@@ -50,7 +50,7 @@
                                     "description": "Whether details of this connection have been sent to the server before",
                                     "type": "boolean",
                                     "required": true
-                                }
+                                },
                                 "hadSecondaryAuth"  {
                                     "description": "Whether the connection required secondary authentication",
                                     "type": "boolean",
