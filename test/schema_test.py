@@ -11,9 +11,12 @@ server_schema = json.load(server_schema_file)
 client_example = json.load(client_example_file)
 server_example = json.load(server_example_file)
 
+print "Testing client and server schema... "
 Draft3Validator.check_schema(client_schema)
 Draft3Validator.check_schema(server_schema)
+print "Done\n Testing example files... "
 validate(client_example, client_schema)
 validate(server_example, server_schema)
+print "Done. Schema test complete."
 
 
