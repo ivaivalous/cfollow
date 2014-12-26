@@ -51,7 +51,7 @@
                                     "type": "boolean",
                                     "required": true
                                 },
-                                "hadSecondaryAuth"  {
+                                "hadSecondaryAuth": {
                                     "description": "Whether the connection required secondary authentication",
                                     "type": "boolean",
                                     "required": true
