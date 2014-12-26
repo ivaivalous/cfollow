@@ -1,0 +1,40 @@
+{
+	"apiKey": "777-ivo-555",
+	"clientTime": "2007-03-01T13:00:00Z",
+	"uptime": 1419629563,
+	"positions": {
+		"totalCount": 94,
+		"newCount": 93,
+		"requestedCount": 1,
+		"index": 93,
+		"firstFrom": "2007-03-01T13:00:00Z",
+		"lastFrom": "2014-12-26T16:15:00Z",
+		"positionsList": [
+		{
+			"positionId": 94,
+			"synced": false,
+			"latitude": 42.330699,
+			"longitude": 23.555374,
+			"dateFrom": "2014-12-26T16:15:00Z",
+			"connectionId": -1
+		}
+		]
+	},
+	"connections": {
+		"totalCount": 8,
+		"newCount": 0,
+		"requestedCount": 1,
+		"index": 0,
+		"firstFrom": "2007-03-01T13:00:00Z",
+		"lastFrom": "2014-12-26T16:15:00Z",
+		"connectionsList": [
+		{
+			"connectionId": 1,
+			"synced": true,
+			"ssid": "Example WiFi Network",
+			"ip": "192.0.0.16",
+			"hadSecondaryAuth": false
+		}
+		]
+	}
+}

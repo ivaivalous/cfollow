@@ -1,0 +1,180 @@
+{
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties": {
+        "apiKey": {
+            "description": "API key used by the cfollow client to identify to the server",
+            "type": "string",
+            "required": true
+        },
+        "clientTime": {
+            "description": "Current ISO 8601 time as know by the client",
+            "type": "string",
+            "required": false
+        },
+        "uptime": {
+            "description": "System uptime in seconds",
+            "type": "number",
+            "required": true
+        },
+        "connections": {
+            "description": "An object to describe the number of different connections the client has connected to",
+            "type": "object",
+            "required": false,
+            "properties": {
+                "connectionsList":  {
+                    "description": "An array of connections that the client has connected to",
+                    "type": "array",
+                    "required": false,
+                    "items": 
+                        {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "connectionId":  {
+                                    "description": "A numeric identifier for the connection",
+                                    "type": "number",
+                                    "required": false
+                                },
+                                "ip":  {
+                                    "description": "IP address for the connection",
+                                    "type": "string",
+                                    "required": false
+                                },
+                                "ssid":  {
+                                    "description": "Network SSID",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "synced":  {
+                                    "description": "Whether details of this connection have been sent to the server before",
+                                    "type": "boolean",
+                                    "required": true
+                                }
+                                "hadSecondaryAuth"  {
+                                    "description": "Whether the connection required secondary authentication",
+                                    "type": "boolean",
+                                    "required": true
+                                }
+                            }
+                        }    
+
+                },
+                "firstFrom":  {
+                    "description": "ISO 8601 date the first connection was made",
+                    "type": "string",
+                    "required": false
+                },
+                "index":  {
+                    "description": "Index for this record",
+                    "type": "number",
+                    "required": true
+                },
+                "lastFrom":  {
+                    "description": "ISO 8601 date the last connection was made",
+                    "type": "string",
+                    "required": false
+                },
+                "newCount":  {
+                    "description": "Number of connections that have never been sent to the server",
+                    "type": "number",
+                    "required": true
+                },
+                "requestedCount":  {
+                    "description": "Number of records sent in the message",
+                    "type": "number",
+                    "required": true
+                },
+                "totalCount":  {
+                    "description": "Total number of connections that have been stored by the client",
+                    "type": "number",
+                    "required": true
+                }
+            }
+        },
+        "positions":  {
+            "description": "An object to describe the number of different GPS positions the client has registered",
+            "type": "object",
+            "required": false,
+            "properties": {
+                "firstFrom":  {
+                    "description": "ISO 8601 date the first connection was made",
+                    "type": "string",
+                    "required": false
+                },
+                "index":  {
+                    "description": "Index for this record",
+                    "type": "number",
+                    "required": true
+                },
+                "lastFrom":  {
+                    "description": "ISO 8601 date the last connection was made",
+                    "type": "string",
+                    "required": false
+                },
+                "newCount":  {
+                    "description": "Number of GPS locations that have never been sent to the server",
+                    "type": "number",
+                    "required": true
+                },
+                "positionsList":  {
+                    "description": "An array of GPS locations that the client has registered",
+                    "type": "array",
+                    "required": false,
+                    "items": 
+                        {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "connectionId":  {
+                                    "description": "A numeric identifier for the location",
+                                    "type": "number",
+                                    "required": false
+                                },
+                                "dateFrom":  {
+                                    "description": "ISO 8601 date the location was registered",
+                                    "type": "string",
+                                    "required": false
+                                },
+                                "latitude":  {
+                                    "description": "GPS latitude",
+                                    "type": "number",
+                                    "required": false
+                                },
+                                "longitude":  {
+                                    "description": "GPS longitude",
+                                    "type": "number",
+                                    "required": false
+                                },
+                                "positionId":  {
+                                    "description": "The ID of the connection the client was using when location was registered. If no connection, -1 is used",
+                                    "type": "number",
+                                    "required": false
+                                },
+                                "synced":  {
+                                    "description": "Whether details of this location have been sent to the server before",
+                                    "type": "boolean",
+                                    "required": false
+                                }
+                            }
+                        }
+                },
+                "requestedCount":  {
+                    "description": "Number of records sent in the message",
+                    "type": "number",
+                    "required": true
+                },
+                "totalCount":  {
+                    "description": "Total number of connections that have been stored by the client",
+                    "type": "number",
+                    "required": true
+                }
+            }
+        },
+        "customDatabaseQueryResult": {
+            "description": "The result of a custom database SQL query requested by the server",
+            "type": "string",
+            "required": false
+        }
+    }
+}

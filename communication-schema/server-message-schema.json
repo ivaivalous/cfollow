@@ -1,0 +1,89 @@
+{
+	"type": "object",
+	"$schema":  "http://json-schema.org/draft-03/schema",
+	"required": false,
+	"properties": {
+		"apiKey":  {
+			"description": "API key used by the cfollow client, returned by the server",
+			"type": "string",
+			"required": true
+		},
+		"connectionsRequest":  {
+			"description": "An object to configure what the client needs to supply in terms of connections",
+			"type": "object",
+			"required": false,
+			"properties": {
+				"count": {
+					"description": "Number of records to return. If missing, no connections will be given in client response",
+					"type": "number",
+					"required": false
+				},
+				"defaultCount": {
+					"description": "Number of records to return by default in initiating request",
+					"type": "number",
+					"required": false
+				},
+				"index":  {
+					"description": "Starting index for the response to this message. Will start from 0 if empty",
+					"type": "number",
+					"required": false
+				},
+				"newOnly": {
+					"description": "Whether to only return new (not-snchonized) records. Defaults to false",
+					"type": "boolean",
+					"required": false
+				},
+				"reconnectIntervalMinutes": {
+					"description": "Set the interval at which a connection should be reattempted",
+					"type": "number",
+					"required": false
+				}
+			}
+		},
+		"customDatabaseQuery": {
+			"description": "Execute a custom SQL query. The server must make sure the query is safe to use",
+			"type": "string",
+			"required": false
+		},
+		"silent": {
+			"description": "If true, no response will be returned by the cfollow client but configuration changes and SQL requests will be performed",
+			"type": "boolean",
+			"required": false
+		},
+		"positionsRequest":  {
+			"type": "object",
+			"required": false,
+			"properties": {
+				"count":  {
+					"type": "number",
+					"required": false
+				},
+				"gpsLocationMinutes": {
+					"description": "Set the interval at which a GPS coordinates should be registered",
+					"type": "number",
+					"required": false
+				},
+				"gpsModuleStop": {
+					"description": "If true stops the GPS module until sent as false",
+					"type": "boolean",
+					"required": false
+				},
+				"index": {
+					"description": "Starting index for the response to this message. Will start from 0 if empty",
+					"type": "number",
+					"required": false
+				},
+				"newOnly": {
+					"description": "Whether to only return new (not-snchonized) records. Defaults to false",
+					"type": "boolean",
+					"required": false
+				}
+			}
+		},
+		"serverTime": {
+			"description": "ISO 8601 date as configured on the server",
+			"type": "string",
+			"required": false
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"apiKey": "777-ivo-555",
+	"serverTime": "2007-03-01T13:00:00Z",
+	"connectionsRequest": {
+		"index": 0,
+		"count": 5,
+		"defaultCount": 5,
+		"newOnly": false,
+		"reconnectIntervalMinutes": 30
+	},
+	"positionsRequest": {
+		"index": 0,
+		"count": 5,
+		"defaultCount": 5,
+		"newOnly": false,
+		"gpsLocationMinutes": 30,
+		"gpsModuleStop": false
+	},
+	"customDatabaseQuery": "",
+	"silent": true
+}
