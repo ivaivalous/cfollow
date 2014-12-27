@@ -1,12 +1,27 @@
 {
 	"type": "object",
 	"$schema":  "http://json-schema.org/draft-03/schema",
-	"required": false,
+	"required": true,
 	"properties": {
 		"apiKey":  {
 			"description": "API key used by the cfollow client, returned by the server",
 			"type": "string",
 			"required": true
+		},
+		"customDatabaseQuery": {
+			"description": "Execute a custom SQL query. The server must make sure the query is safe to use",
+			"type": "string",
+			"required": false
+		},
+		"silent": {
+			"description": "If true, no response will be returned by the cfollow client but configuration changes and SQL requests will be performed. Default is false",
+			"type": "boolean",
+			"required": false
+		},
+		"serverTime": {
+			"description": "ISO-8601 date as configured on the server. The client will override its time to this",
+			"type": "string",
+			"required": false
 		},
 		"connectionsRequest":  {
 			"description": "An object to configure what the client needs to supply in terms of connections",
@@ -14,7 +29,7 @@
 			"required": false,
 			"properties": {
 				"count": {
-					"description": "Number of records to return. If missing, no connections will be given in client response",
+					"description": "Number of records to return. If missing, no connections will be given in client response but proposed configuration will be applied",
 					"type": "number",
 					"required": false
 				},
@@ -40,21 +55,12 @@
 				}
 			}
 		},
-		"customDatabaseQuery": {
-			"description": "Execute a custom SQL query. The server must make sure the query is safe to use",
-			"type": "string",
-			"required": false
-		},
-		"silent": {
-			"description": "If true, no response will be returned by the cfollow client but configuration changes and SQL requests will be performed",
-			"type": "boolean",
-			"required": false
-		},
 		"positionsRequest":  {
 			"type": "object",
 			"required": false,
 			"properties": {
-				"count":  {
+				"count": {
+					"description": "Number of records to return. If missing, no positions will be given in client response but proposed configuration will be applied",
 					"type": "number",
 					"required": false
 				},
@@ -79,11 +85,6 @@
 					"required": false
 				}
 			}
-		},
-		"serverTime": {
-			"description": "ISO 8601 date as configured on the server",
-			"type": "string",
-			"required": false
 		}
 	}
 }
