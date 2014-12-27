@@ -1,8 +1,8 @@
 import json
 from jsonschema import Draft3Validator, validate
 
-client_schema_file=open("/var/lib/jenkins/workspace/cfollow-schema/trunk/communication-schema/client-message-schema.json")
-server_schema_file=open("/var/lib/jenkins/workspace/cfollow-schema/trunk/communication-schema/server-message-schema.json")
+client_schema_file=open("/var/lib/jenkins/workspace/cfollow-schema/trunk/communication-schema/client-message-schema.v1.json")
+server_schema_file=open("/var/lib/jenkins/workspace/cfollow-schema/trunk/communication-schema/server-message-schema.v1.json")
 client_example_file=open("/var/lib/jenkins/workspace/cfollow-schema/trunk/communication-schema/client-message-example.json")
 server_example_file=open("/var/lib/jenkins/workspace/cfollow-schema/trunk/communication-schema/server-message-example.json")
 
