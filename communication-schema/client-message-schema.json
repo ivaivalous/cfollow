@@ -1,4 +1,5 @@
 {
+    "title": "Cfollow Client Message JSON Schema",
     "type": "object",
     "$schema": "http://json-schema.org/draft-03/schema",
     "properties": {
@@ -17,11 +18,46 @@
             "type": "number",
             "required": true
         },
+        "customDatabaseQueryResult": {
+            "description": "The result of a custom database SQL query requested by the server",
+            "type": "string",
+            "required": false
+        },
         "connections": {
             "description": "An object to describe the number of different connections the client has connected to",
             "type": "object",
             "required": false,
             "properties": {
+                "firstFrom":  {
+                    "description": "ISO 8601 date the first connection was made",
+                    "type": "string",
+                    "required": false
+                },
+                "index":  {
+                    "description": "Index for this record",
+                    "type": "number",
+                    "required": true
+                },
+                "lastFrom":  {
+                    "description": "ISO 8601 date the last connection was made",
+                    "type": "string",
+                    "required": false
+                },
+                "newCount":  {
+                    "description": "Number of connections that have never been sent to the server",
+                    "type": "number",
+                    "required": true
+                },
+                "requestedCount":  {
+                    "description": "Number of records sent in the message",
+                    "type": "number",
+                    "required": true
+                },
+                "totalCount":  {
+                    "description": "Total number of connections that have been stored by the client",
+                    "type": "number",
+                    "required": true
+                },
                 "connectionsList":  {
                     "description": "An array of connections that the client has connected to",
                     "type": "array",
@@ -58,37 +94,6 @@
                                 }
                             }
                         }    
-
-                },
-                "firstFrom":  {
-                    "description": "ISO 8601 date the first connection was made",
-                    "type": "string",
-                    "required": false
-                },
-                "index":  {
-                    "description": "Index for this record",
-                    "type": "number",
-                    "required": true
-                },
-                "lastFrom":  {
-                    "description": "ISO 8601 date the last connection was made",
-                    "type": "string",
-                    "required": false
-                },
-                "newCount":  {
-                    "description": "Number of connections that have never been sent to the server",
-                    "type": "number",
-                    "required": true
-                },
-                "requestedCount":  {
-                    "description": "Number of records sent in the message",
-                    "type": "number",
-                    "required": true
-                },
-                "totalCount":  {
-                    "description": "Total number of connections that have been stored by the client",
-                    "type": "number",
-                    "required": true
                 }
             }
         },
@@ -114,6 +119,16 @@
                 },
                 "newCount":  {
                     "description": "Number of GPS locations that have never been sent to the server",
+                    "type": "number",
+                    "required": true
+                },
+                "requestedCount":  {
+                    "description": "Number of records sent in the message",
+                    "type": "number",
+                    "required": true
+                },
+                "totalCount":  {
+                    "description": "Total number of connections that have been stored by the client",
                     "type": "number",
                     "required": true
                 },
@@ -158,23 +173,8 @@
                                 }
                             }
                         }
-                },
-                "requestedCount":  {
-                    "description": "Number of records sent in the message",
-                    "type": "number",
-                    "required": true
-                },
-                "totalCount":  {
-                    "description": "Total number of connections that have been stored by the client",
-                    "type": "number",
-                    "required": true
                 }
             }
-        },
-        "customDatabaseQueryResult": {
-            "description": "The result of a custom database SQL query requested by the server",
-            "type": "string",
-            "required": false
         }
     }
 }
