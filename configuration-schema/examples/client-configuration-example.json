@@ -4,5 +4,5 @@
 	"crontab": "@daily",
 	"defaultConnectionsCount": 1,
 	"defaultPositionsCount": 1,
-	"disableGps": false,
+	"disableGps": false
 }
