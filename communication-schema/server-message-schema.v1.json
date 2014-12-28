@@ -14,13 +14,23 @@
 			"type": "string",
 			"required": false
 		},
+		"serverAddress": {
+			"description": "Configures a new server address. Incorrect setting will result in communication loss as the client will now attempt to connect to the new address",
+			"type": "string",
+			"required": false
+		},
+		"serverTime": {
+			"description": "ISO-8601 date as configured on the server. The client will override its time to this",
+			"type": "string",
+			"required": false
+		},
 		"silent": {
 			"description": "If true, no response will be returned by the cfollow client but configuration changes and SQL requests will be performed. Default is false",
 			"type": "boolean",
 			"required": false
 		},
-		"serverTime": {
-			"description": "ISO-8601 date as configured on the server. The client will override its time to this",
+		"crontab": {
+			"description": "Defines when rtcwake is to occur",
 			"type": "string",
 			"required": false
 		},
@@ -34,7 +44,7 @@
 					"type": "number",
 					"required": false
 				},
-				"defaultCount": {
+				"defaultConnectionsCount": {
 					"description": "Number of records to return by default in initiating request",
 					"type": "number",
 					"required": false
@@ -48,11 +58,6 @@
 					"description": "Whether to only return new (not-snchonized) records. Defaults to false",
 					"type": "boolean",
 					"required": false
-				},
-				"reconnectIntervalMinutes": {
-					"description": "Set the interval at which a connection should be reattempted",
-					"type": "number",
-					"required": false
 				}
 			}
 		},
@@ -65,12 +70,12 @@
 					"type": "number",
 					"required": false
 				},
-				"gpsLocationMinutes": {
-					"description": "Set the interval at which a GPS coordinates should be registered",
+				"defaultPositionsCount": {
+					"description": "Number of records to return by default in initiating request",
 					"type": "number",
 					"required": false
 				},
-				"gpsModuleStop": {
+				"disableGps": {
 					"description": "If true stops the GPS module until sent as false",
 					"type": "boolean",
 					"required": false

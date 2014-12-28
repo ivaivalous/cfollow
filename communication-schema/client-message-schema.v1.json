@@ -9,7 +9,17 @@
             "required": true
         },
         "clientTime": {
-            "description": "Current ISO 8601 time as know by the client",
+            "description": "Current ISO-8601 time as know by the client",
+            "type": "string",
+            "required": false
+        },  
+        "crontab": {
+            "description": "When rtcwake is to occur configuration",
+            "type": "string",
+            "required": true
+        },
+        "customDatabaseQueryResult": {
+            "description": "The result of a custom database SQL query requested by the server",
             "type": "string",
             "required": false
         },
@@ -18,18 +28,13 @@
             "type": "number",
             "required": true
         },
-        "customDatabaseQueryResult": {
-            "description": "The result of a custom database SQL query requested by the server",
-            "type": "string",
-            "required": false
-        },
         "connections": {
             "description": "An object to describe the number of different connections the client has connected to",
             "type": "object",
             "required": false,
             "properties": {
                 "firstFrom":  {
-                    "description": "ISO 8601 date the first connection was made",
+                    "description": "ISO-8601 date the first connection was made",
                     "type": "string",
                     "required": false
                 },
@@ -39,7 +44,7 @@
                     "required": true
                 },
                 "lastFrom":  {
-                    "description": "ISO 8601 date the last connection was made",
+                    "description": "ISO-8601 date the last connection was made",
                     "type": "string",
                     "required": false
                 },

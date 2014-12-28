@@ -1,0 +1,8 @@
+{
+	"apiKey": "777-ivo-555",
+	"serverAddress": "https://tsarstva.bg/cfollow",
+	"crontab": "@daily",
+	"defaultConnectionsCount": 1,
+	"defaultPositionsCount": 1,
+	"disableGps": false,
+}
