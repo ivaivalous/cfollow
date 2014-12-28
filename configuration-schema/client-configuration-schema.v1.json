@@ -20,12 +20,12 @@
         },
         "defaultConnectionsCount": {
         	"description": "Default number of connections sent out in requests",
-        	"type": "string",
+        	"type": "number",
         	"required": true
         },
         "defaultPositionsCount": {
         	"description": "Default number of positions sent out in requests",
-        	"type": "string",
+        	"type": "number",
         	"required": true
         }
     }
