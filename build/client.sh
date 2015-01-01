@@ -7,4 +7,4 @@ mkdir -p client/logs
 \cp schema/configuration/*.json client/schema
 \cp schema/communication/*.json client/schema
 \cp schema/logging/*.json client/schema
-sed -i "s/___API_KEY___/$1/g" client/config.json
+sed -i "s/___API_KEY___/${1}/g" client/config.json
