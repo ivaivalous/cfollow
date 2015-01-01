@@ -27,6 +27,16 @@
         	"description": "Default number of positions sent out in requests",
         	"type": "number",
         	"required": true
+        },
+        "enableSendLog": {
+            "description": "Whether logs should be sent as an additional request",
+            "type": "boolean",
+            "required": true            
+        },
+        "enableArchiveLogAfterSend": {
+            "description": "Whether logs should be archived after being sent. Default is true and the goal is to minimize request size",
+            "type": "boolean",
+            "required": true
         }
     }
 }

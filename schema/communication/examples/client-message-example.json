@@ -3,6 +3,7 @@
 	"clientTime": "2007-03-01T13:00:00Z",
 	"uptime": 1419629563,
 	"crontab": "@daily",
+	"logSize": "225",
 	"positions": {
 		"totalCount": 94,
 		"newCount": 93,

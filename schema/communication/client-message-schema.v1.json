@@ -23,6 +23,11 @@
             "type": "string",
             "required": false
         },
+        "logSize": {
+            "description": "Log size in Kilobytes",
+            "type": "string",
+            "required": true
+        },
         "uptime": {
             "description": "System uptime in seconds",
             "type": "number",

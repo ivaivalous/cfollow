@@ -10,13 +10,13 @@ VERSION = "v1"
 client_schema_file = open(WORKSPACE_DIR + "schema/communication/client-message-schema." + VERSION + ".json")
 server_schema_file = open(WORKSPACE_DIR + "schema/communication/server-message-schema." + VERSION + ".json")
 client_configuration_schema_file = open(WORKSPACE_DIR + "schema/configuration/client-configuration-schema." + VERSION + ".json")
-client_logging_schema_file = open(WORKSPACE_DIR + "schema/logging/client-logging-schema." + VERSION + ".json")
+client_logging_schema_file = open(WORKSPACE_DIR + "schema/communication/client-logging-schema." + VERSION + ".json")
 
 # Loading example files
 client_example_file = open(WORKSPACE_DIR + "schema/communication/examples/client-message-example.json")
 server_example_file = open(WORKSPACE_DIR + "schema/communication/examples/server-message-example.json")
 client_configuration_example_file = open(WORKSPACE_DIR + "schema/configuration/examples/client-configuration-example.json")
-client_logging_example_file = open(WORKSPACE_DIR + "schema/logging/examples/client-logging-example.json")
+client_logging_example_file = open(WORKSPACE_DIR + "schema/communication/examples/client-logging-example.json")
 
 # Loading into JSON
 client_schema = json.load(client_schema_file) 

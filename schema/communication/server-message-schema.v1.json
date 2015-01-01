@@ -14,6 +14,21 @@
 			"type": "string",
 			"required": false
 		},
+		"enableSendLog": {
+			"description": "Whether logs should be sent as an additional request",
+			"type": "boolean",
+			"required": false
+		},
+		"enableArchiveLogAfterSend": {
+			"description": "Whether logs should be archived after being sent. Default is true and the goal is to minimize request size",
+			"type": "boolean",
+			"required": false
+		},
+		"archiveLogNow": {
+			"description": "Archive all logs regardless of whether they have been sent",
+			"type": "string",
+			"required": false
+		},
 		"serverAddress": {
 			"description": "Configures a new server address. Incorrect setting will result in communication loss as the client will now attempt to connect to the new address",
 			"type": "string",

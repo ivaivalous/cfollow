@@ -1,8 +1,10 @@
 {
-	"apiKey": "777-ivo-555",
+	"apiKey": "%API_KEY%",
 	"serverAddress": "https://tsarstva.bg/cfollow",
 	"crontab": "@daily",
 	"defaultConnectionsCount": 1,
 	"defaultPositionsCount": 1,
-	"disableGps": false
+	"disableGps": false,
+	"enableSendLog": false,
+	"enableArchiveLogAfterSend": true
 }
