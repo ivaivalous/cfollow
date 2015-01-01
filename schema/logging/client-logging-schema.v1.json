@@ -1,0 +1,22 @@
+{
+	"title": "Cfollow Client Logging JSON Schema",
+	"type": "object",
+	"$schema": "http://json-schema.org/draft-03/schema",
+    "properties": {
+    	"date": {
+    		"description": "ISO-8601 date of event",
+    		"type": "string",
+    		"required": true
+    	},
+    	"level": {
+    		"description": "Logger level",
+    		"type": { "enum": [ "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL" ] },
+    		"required": true
+    	},
+    	"message": {
+    		"description": "Event message",
+    		"type": "string",
+    		"required": true
+    	}
+    }
+}
