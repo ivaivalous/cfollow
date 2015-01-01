@@ -1,5 +1,5 @@
 {
-	"apiKey": "777-ivo-555",
+	"apiKey": "___API_KEY___",
 	"serverAddress": "https://tsarstva.bg/cfollow",
 	"crontab": "@daily",
 	"defaultConnectionsCount": 1,
