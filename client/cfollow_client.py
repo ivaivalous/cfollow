@@ -2,6 +2,9 @@
 import json
 import jsonschema
 import sys
+import logger
+
+logging.basicConfig(filename="logs/client.log", format="%(levelname)s|%(asctime)s|\"%(message)s\"")
 
 CONFIG_FILENAME = "config.json"
 apiKey          = None
@@ -10,6 +13,8 @@ crontab         = None
 defaultConnectionsCount = 1
 defaultPositionsCount   = 1
 disableGps      = True
+enableSendLog   = False
+enableArchiveLogAfterSend = True
 config_schema   = None
 
 def read_config():
@@ -28,6 +33,7 @@ def read_config():
 	try:
 		validate(config, config_schema)
 	except ValidationError:
+		logging.critical("Invalid configuration file. Cannot continue.")
 		sys.exit(1)
 
 	apiKey                  = config["apiKey"]
