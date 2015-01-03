@@ -1,5 +1,10 @@
 {
-	"date": "2005-03-19 15:10:26,618",
-	"level": "INFO",
-	"message": "System Started Successfully at v. 1.1.1"
+	"apiKey": "777-ivo-555",
+	"log": [
+	{
+		"date": "2005-03-19 15:10:26,618",
+		"level": "INFO",
+		"message": "System Started Successfully at v. 1.1.1"
+	}
+	]
 }
