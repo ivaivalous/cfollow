@@ -75,7 +75,8 @@ def read_config():
 
 def build_logging_request_json():
     logging_json = None
-    logging_data = []
+    logging_data = {}
+    logging_data["apiKey"] = api_key
 
     with open(LOG_FILENAME, "r") as log_file:
         log_data = log_file.read().split(NEWLINE)
@@ -99,13 +100,21 @@ def build_logging_request_json():
             logging.error(sanitize_log_message("Encountered malformed log entry \"" + record + "\" Skipped."))
             continue
 
-        logging_data.append(assoc_data)
+        logging_data["log"] = assoc_data
 
     logging_json = json.dumps(logging_data)
 
     return logging_json
 
+def validate_logging_request_json(logging_json):
+    logging_schema = json.load(open("schema/client-logging-schema.v1.json"))
+    try:
+        jsonschema.validate(logging_json, logging_schema)
+    except jsonschema.ValidationError:
+        logging.error("Invalid log file. Will archive")
+        archive_log()
+
 
 if __name__ == "__main__":
     read_config()
-    build_logging_request_json()
+    validate_logging_request_json(build_logging_request_json())
