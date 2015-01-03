@@ -4,6 +4,7 @@
 cd ..
 mkdir -p client/schema
 mkdir -p client/logs
+mkdir -p client/logs/archive
 \cp schema/configuration/*.json client/schema
 \cp schema/communication/*.json client/schema
 \cp schema/logging/*.json client/schema

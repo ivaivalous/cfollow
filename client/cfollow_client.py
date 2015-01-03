@@ -3,9 +3,19 @@ import json
 import jsonschema
 import sys
 import logging
+import shutil
+import time
+import os
 
 CONFIG_FILENAME               = "config.json"
 LOG_FILENAME                  = "logs/client.log"
+LOG_ARCHIVE_DIRECTORY         = "logs/archive/"
+LOG_ARCHIVE_FILENAME          = "_client.log"
+SEPARATOR                     = "|"
+SEPARATOR_REPLACEMENT         = "__PIPE__"
+NEWLINE                       = "\n"
+NEWLINE_REPLACEMENT           = "__NL__"
+
 api_key                       = None
 server_address                = None
 crontab                       = None
@@ -17,6 +27,19 @@ enable_archive_log_after_send = True
 config_schema                 = None
 
 logging.basicConfig(filename=LOG_FILENAME, format="%(levelname)s|%(asctime)s|%(message)s", level=logging.DEBUG)
+
+def sanitize_log_message(message):
+    message_safe = message
+    message_safe = message_safe.replace(SEPARATOR, SEPARATOR_REPLACEMENT)
+    message_safe = message_safe.replace(NEWLINE, NEWLINE_REPLACEMENT)
+    return message_safe
+
+def get_log_size():
+    return os.path.getsize(LOG_FILENAME)
+
+def archive_log():
+    shutil.copyfile(LOG_FILENAME, LOG_ARCHIVE_DIRECTORY + time.strftime("%H_%M_%S") + LOG_ARCHIVE_FILENAME)
+    open(LOG_FILENAME, 'w').close()
 
 def read_config():
     global config_schema
@@ -48,29 +71,33 @@ def read_config():
     enable_send_log           = config["enableSendLog"]
     enable_archive_log_after_send = config["enableArchiveLogAfterSend"]
 
-    logging.info("Loaded config. API key=" + api_key)
+    logging.info(sanitize_log_message("Loaded config. API key=" + api_key))
 
 def build_logging_request_json():
     logging_json = None
     logging_data = []
 
     with open(LOG_FILENAME, "r") as log_file:
-        log_data = log_file.read().split('\n')
+        log_data = log_file.read().split(NEWLINE)
 
     for record in log_data:
         if(record.isspace() or record == ''):
-        	continue
+            continue
 
-    	record_data = record.split('|')
+        record_data = record.split(SEPARATOR)
         assoc_data = {}
+
+        if(len(record_data) != 3):
+            logging.error(sanitize_log_message("Encountered malformed log entry \"" + record + "\" Skipped."))
+            continue            
 
         try:
             assoc_data["date"]    = record_data[1]
             assoc_data["level"]   = record_data[0]
             assoc_data["message"] = record_data[2]
         except IndexError:
-        	logging.error("Encountered malformed log entry. Skipped.")
-        	continue
+            logging.error(sanitize_log_message("Encountered malformed log entry \"" + record + "\" Skipped."))
+            continue
 
         logging_data.append(assoc_data)
 
@@ -81,3 +108,4 @@ def build_logging_request_json():
 
 if __name__ == "__main__":
     read_config()
+    build_logging_request_json()
