@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("webadmin/userRegister")
 public class UserRegister {
-	private UserRegister() {};
+	public UserRegister() {};
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)

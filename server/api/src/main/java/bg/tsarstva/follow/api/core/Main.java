@@ -16,7 +16,7 @@ import java.net.URI;
  */
 
 public class Main {
-	private static final String URL = "http://localhost:9611";
+	private static final String URL = UrlBuilder.getUrl();
 	private static final String PACKAGE_TO_USE = "bg.tsarstva.follow.api.webadmin.endpoints";
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 	private static ResourceConfig resourceConfig = null;
@@ -31,7 +31,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
     	start();
     	
-    	LOGGER.info("The Follow Web API lives!");
+    	LOGGER.info("Follow web API started.");
     	
         while(true) {
         	System.in.read();

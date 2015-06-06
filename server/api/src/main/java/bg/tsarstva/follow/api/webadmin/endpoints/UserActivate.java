@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("webadmin/userActivate")
 public class UserActivate {
-	private UserActivate() {};
+	public UserActivate() {};
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)

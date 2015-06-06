@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("webadmin/createUser")
 public class CreateUser {
-	private CreateUser() {};
+	public CreateUser() {};
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)

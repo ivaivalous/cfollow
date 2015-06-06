@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 
 @Path("webadmin/listUsers")
 public class ListUsers {
-	private ListUsers() {};
+	public ListUsers() {};
 	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)

@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("webadmin/adminLogin")
 public class AdminLogin {
-	private AdminLogin() {};
+	public AdminLogin() {};
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)

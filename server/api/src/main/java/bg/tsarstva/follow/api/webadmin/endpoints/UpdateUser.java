@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("webadmin/updateUser")
 public class UpdateUser {
-	private UpdateUser() {};
+	public UpdateUser() {};
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)

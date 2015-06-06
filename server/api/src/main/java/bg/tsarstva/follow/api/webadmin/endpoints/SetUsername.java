@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("webadmin/setUsername")
 public class SetUsername {
-	private SetUsername() {};
+	public SetUsername() {};
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)

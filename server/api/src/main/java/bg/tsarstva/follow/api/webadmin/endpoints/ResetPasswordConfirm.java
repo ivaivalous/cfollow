@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("webadmin/resetPasswordConfirm")
 public class ResetPasswordConfirm {
-	private ResetPasswordConfirm() {};
+	public ResetPasswordConfirm() {};
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)

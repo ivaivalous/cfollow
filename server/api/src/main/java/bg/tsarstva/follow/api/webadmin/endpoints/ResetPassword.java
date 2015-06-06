@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("webadmin/resetPassword")
 public class ResetPassword {
-	private ResetPassword() {};
+	public ResetPassword() {};
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
