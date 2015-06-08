@@ -16,15 +16,24 @@ public class PropertyReader {
 	
 	private static final String PROPERTIES_FILENAME = "follow.properties";
 	private static final Logger LOGGER = Logger.getLogger(PropertyReader.class.getName());
+	private static PropertyReader propertyReader = null;
 	private static Properties properties;
 	
-	public PropertyReader() {
+	private PropertyReader() {
 		try {
 			buildProperties();
 		} catch(IOException e) {
 			LOGGER.severe("Error loading properties: " + e.getMessage());
 		}
 	};
+	
+	public static PropertyReader getInstance() {
+		if(propertyReader == null) {
+			propertyReader = new PropertyReader();
+		}
+		
+		return propertyReader;
+	}
 	
 	private void buildProperties() throws IOException {
 		properties = new Properties();

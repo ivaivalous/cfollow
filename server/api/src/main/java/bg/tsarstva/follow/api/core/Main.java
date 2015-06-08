@@ -16,7 +16,7 @@ import java.net.URI;
  */
 
 public class Main {
-	private static final String URL = UrlBuilder.getUrl();
+	private static final String URL = UrlBuilder.getApplicationUrl();
 	private static final String PACKAGE_TO_USE = "bg.tsarstva.follow.api.webadmin.endpoints";
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 	private static ResourceConfig resourceConfig = null;
@@ -25,6 +25,8 @@ public class Main {
 	
     public static HttpServer start() {
         resourceConfig = new ResourceConfig().packages(PACKAGE_TO_USE);
+        
+        // TODO Support TLS
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(URL), resourceConfig);
     }
     
