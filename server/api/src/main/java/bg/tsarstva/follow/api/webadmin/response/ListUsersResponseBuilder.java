@@ -1,4 +1,4 @@
-package bg.tsarstva.follow.api.webadmin.responses;
+package bg.tsarstva.follow.api.webadmin.response;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import bg.tsarstva.follow.api.database.queries.ListUsersQuery;
+import bg.tsarstva.follow.api.database.query.ListUsersQuery;
 
 /**
  * Build a response to the listUsers query
@@ -14,7 +14,7 @@ import bg.tsarstva.follow.api.database.queries.ListUsersQuery;
  *
  */
 
-public class ListUsersResponseBuilder {
+public class ListUsersResponseBuilder extends AbstractResponseBuilder {
 	
 	private JSONObject response;
 

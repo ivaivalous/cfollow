@@ -1,4 +1,4 @@
-package bg.tsarstva.follow.api.database.queries;
+package bg.tsarstva.follow.api.database.query;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ import bg.tsarstva.follow.api.core.DatabaseConnector;
  *
  */
 
-public class ListUsersQuery {
+public class ListUsersQuery extends AbstractQuery {
 	
 	private static final String STATEMENT = "select * from `cf_users.data` where isdeleted = 0";
 	private static ResultSet queryResult;

@@ -1,4 +1,4 @@
-package bg.tsarstva.follow.api.webadmin.responses;
+package bg.tsarstva.follow.api.webadmin.response;
 
 import org.json.JSONObject;
 
@@ -8,11 +8,14 @@ import org.json.JSONObject;
  *
  */
 
-public class SqlErrorResponse {
+public class SqlErrorResponse extends AbstractResponseBuilder {
 
-	private SqlErrorResponse() {};
-	
-	public static JSONObject getDefaultError() {
+	public SqlErrorResponse() {
+		
+	};
+
+	@Override
+	public JSONObject getResponse() {
 		JSONObject response = new JSONObject();
 		
 		response.append("success", false);

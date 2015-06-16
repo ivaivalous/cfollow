@@ -1,4 +1,4 @@
-package bg.tsarstva.follow.api.webadmin.endpoints;
+package bg.tsarstva.follow.api.webadmin.endpoint;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -7,19 +7,19 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * Create user API
+ * User register API
  * @see https://github.com/ivaivalous/cfollow/wiki/%5BSPEC%5D-Follow-API-WebAdmin-Requests-Specification
  * @author ivaylo.marinkov
  *
  */
 
-@Path("webadmin/createUser")
-public class CreateUser {
-	public CreateUser() {};
+@Path("webadmin/setUsername")
+public class SetUsername {
+	public SetUsername() {};
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
-	public Response createUser(String message) {
+	public Response setUsername(String message) {
     	return Response.ok().entity(message).build();
 	}
 }

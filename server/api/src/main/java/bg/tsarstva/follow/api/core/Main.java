@@ -17,7 +17,7 @@ import java.net.URI;
 
 public class Main {
 	private static final String URL = UrlBuilder.getApplicationUrl();
-	private static final String PACKAGE_TO_USE = "bg.tsarstva.follow.api.webadmin.endpoints";
+	private static final String PACKAGE_TO_USE = "bg.tsarstva.follow.api.webadmin.endpoint";
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 	private static ResourceConfig resourceConfig = null;
 	

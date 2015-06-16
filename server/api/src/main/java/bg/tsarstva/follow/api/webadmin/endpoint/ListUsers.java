@@ -1,4 +1,4 @@
-package bg.tsarstva.follow.api.webadmin.endpoints;
+package bg.tsarstva.follow.api.webadmin.endpoint;
 
 import java.sql.SQLException;
 import java.util.logging.Logger;
@@ -11,9 +11,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import bg.tsarstva.follow.api.database.queries.ListUsersQuery;
-import bg.tsarstva.follow.api.webadmin.responses.ListUsersResponseBuilder;
-import bg.tsarstva.follow.api.webadmin.responses.SqlErrorResponse;
+import bg.tsarstva.follow.api.database.query.ListUsersQuery;
+import bg.tsarstva.follow.api.webadmin.response.ListUsersResponseBuilder;
+import bg.tsarstva.follow.api.webadmin.response.SqlErrorResponse;
 
 /**
  * Update user API
@@ -44,7 +44,7 @@ public class ListUsers {
 			responseBuilder = new ListUsersResponseBuilder(query);
 		} catch(SQLException | ClassNotFoundException e) {
 			LOGGER.severe("SQL error building users list: " + e.getMessage());
-			return Response.serverError().entity(SqlErrorResponse.getDefaultError()).build();
+			return Response.serverError().entity(new SqlErrorResponse().getResponse()).build();
 		}
 		
     	return Response.ok().entity(responseBuilder.getResponse().toString()).build();

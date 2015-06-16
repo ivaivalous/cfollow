@@ -1,4 +1,4 @@
-package bg.tsarstva.follow.api.webadmin.endpoints;
+package bg.tsarstva.follow.api.webadmin.endpoint;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -7,19 +7,19 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * Reset password change API
+ * Admin login API
  * @see https://github.com/ivaivalous/cfollow/wiki/%5BSPEC%5D-Follow-API-WebAdmin-Requests-Specification
  * @author ivaylo.marinkov
  *
  */
 
-@Path("webadmin/resetPasswordChange")
-public class ResetPasswordChange {
-	public ResetPasswordChange() {};
+@Path("webadmin/adminLogin")
+public class AdminLogin {
+	public AdminLogin() {};
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
-	public Response resetPasswordChange(String message) {
+	public Response adminLogin(String message) {
     	return Response.ok().entity(message).build();
 	}
 }
