@@ -18,7 +18,7 @@ public class SqlErrorResponse extends AbstractResponseBuilder {
 	public JSONObject getResponse() {
 		JSONObject response = new JSONObject();
 		
-		response.append("success", false);
+		response.accumulate("success", false);
 		
 		return response;
 	}
