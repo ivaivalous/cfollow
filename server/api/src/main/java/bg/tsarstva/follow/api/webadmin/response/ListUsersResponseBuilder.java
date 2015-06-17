@@ -35,6 +35,7 @@ public class ListUsersResponseBuilder extends AbstractResponseBuilder {
 		while(result.next()) {
 			usersArrayEntry = new JSONObject();
 			
+			// TODO Have this replaced by a list of User objects
 			usersArrayEntry.accumulate("username", result.getString("username"));
 			usersArrayEntry.accumulate("nicename", result.getString("nicename"));
 			usersArrayEntry.accumulate("email", result.getString("email"));
