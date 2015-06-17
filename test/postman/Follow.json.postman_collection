@@ -1,0 +1,191 @@
+{
+	"id": "ca06a31a-68c0-af5f-71a3-9649a8a1a486",
+	"name": "Follow",
+	"description": "",
+	"order": [
+		"858cb1d1-b28b-eaa5-2204-f646ff6f5f72",
+		"dadac7d0-f795-56fe-1941-b7dd75e84c45",
+		"d9498789-eea5-ce2f-b3d9-d5f7ab9c9fe5",
+		"01760620-6227-d871-018e-ba908a4dae69"
+	],
+	"folders": [],
+	"timestamp": 0,
+	"synced": false,
+	"owner": "22976",
+	"sharedWithTeam": false,
+	"subscribed": false,
+	"remoteLink": null,
+	"public": false,
+	"write": true,
+	"requests": [
+		{
+			"id": "01760620-6227-d871-018e-ba908a4dae69",
+			"headers": "",
+			"url": "http://localhost:9611/webadmin/setUsername",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "aaa@ivo.qa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "newUsername",
+					"value": "ivajlo",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1434498471647,
+			"name": "setUsername",
+			"description": "",
+			"collectionId": "ca06a31a-68c0-af5f-71a3-9649a8a1a486",
+			"synced": false
+		},
+		{
+			"id": "858cb1d1-b28b-eaa5-2204-f646ff6f5f72",
+			"headers": "",
+			"url": "http://localhost:9611/webadmin/listUsers",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1434486558823,
+			"name": "listUsers",
+			"description": "",
+			"collectionId": "ca06a31a-68c0-af5f-71a3-9649a8a1a486",
+			"synced": false
+		},
+		{
+			"id": "d9498789-eea5-ce2f-b3d9-d5f7ab9c9fe5",
+			"headers": "",
+			"url": "http://localhost:9611/webadmin/updateUser",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "iiivo",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "aaaaa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nicename",
+					"value": "Ivo Ivovski",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "aaa@abv.bg",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "apiKey",
+					"value": "aaaaa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isadmin",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isdisabled",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isdeleted",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1434493485222,
+			"name": "updateUser",
+			"description": "",
+			"collectionId": "ca06a31a-68c0-af5f-71a3-9649a8a1a486",
+			"synced": false
+		},
+		{
+			"id": "dadac7d0-f795-56fe-1941-b7dd75e84c45",
+			"headers": "",
+			"url": "http://localhost:9611/webadmin/createUser",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "iiivo",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "aaaaa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nicename",
+					"value": "Ivo Ivov",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "aaa@abv.bg",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "apiKey",
+					"value": "aaaaa",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1434487457210,
+			"name": "createUser",
+			"description": "",
+			"collectionId": "ca06a31a-68c0-af5f-71a3-9649a8a1a486",
+			"synced": false
+		}
+	]
+}
