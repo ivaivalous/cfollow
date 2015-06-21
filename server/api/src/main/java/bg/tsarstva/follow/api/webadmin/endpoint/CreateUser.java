@@ -1,5 +1,7 @@
 package bg.tsarstva.follow.api.webadmin.endpoint;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
@@ -46,6 +48,9 @@ public class CreateUser {
 			responseBuilder = new CreateUserResponseBuilder(query);
 		} catch(SQLException | ClassNotFoundException e) {
 			LOGGER.severe("SQL error inserting new user: " + e.getMessage());
+			return Response.serverError().entity(new SqlErrorResponse().getResponse()).build();
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			LOGGER.severe("Algorithm error creating password hash " + e.getMessage());
 			return Response.serverError().entity(new SqlErrorResponse().getResponse()).build();
 		}
 		
