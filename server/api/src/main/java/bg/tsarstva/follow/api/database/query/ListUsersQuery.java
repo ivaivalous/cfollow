@@ -19,7 +19,7 @@ public class ListUsersQuery extends AbstractQuery {
 	
 	public ListUsersQuery() {};
 	
-	public ListUsersQuery execute() throws ClassNotFoundException, SQLException {
+	public synchronized ListUsersQuery execute() throws ClassNotFoundException, SQLException {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 		PreparedStatement statement = databaseConnector.getConnection().prepareStatement(STATEMENT);
 		

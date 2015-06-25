@@ -20,7 +20,7 @@ public class SetUsernameQuery extends AbstractQuery {
 		this.newUserName = newUserName;
 	}
 
-	public SetUsernameQuery execute() throws ClassNotFoundException, SQLException {
+	public synchronized SetUsernameQuery execute() throws ClassNotFoundException, SQLException {
 		DatabaseConnector databaseConnector;
 		PreparedStatement statement;
 		User user = new GetUserQuery(currentUserName).execute().getResult();

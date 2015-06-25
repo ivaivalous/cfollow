@@ -33,7 +33,7 @@ public class CreateUserQuery extends AbstractQuery {
 		this.apiKey = apiKey;
 	}
 
-	public CreateUserQuery execute() throws ClassNotFoundException, SQLException {
+	public synchronized CreateUserQuery execute() throws ClassNotFoundException, SQLException {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 		PreparedStatement statement = databaseConnector.getConnection().prepareStatement(STATEMENT);
 		

@@ -9,9 +9,13 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
+
+import javax.mail.MessagingException;
 
 import bg.tsarstva.follow.api.core.DatabaseConnector;
 import bg.tsarstva.follow.api.core.PropertyReader;
+import bg.tsarstva.follow.api.email.NotificationEmail;
 import bg.tsarstva.follow.api.entity.User;
 import bg.tsarstva.follow.api.generator.ApiKeyGenerator;
 import bg.tsarstva.follow.api.security.PasswordManager;
@@ -22,6 +26,7 @@ public class UserRegisterQuery extends AbstractQuery {
 	
 	private static final String STATEMENT = "INSERT INTO `cfollow`.`cf_users.data` (`username`, `password`, `nicename`, `email`, `apiKey`, `isactivated`, `isadmin`, `isdisabled`, `isdeleted`) VALUES (?, ?, ?, ?, ?, '0', '0', '0', '0');";
 	private static final String CREATE_ACTIVATION_RECORD = "INSERT INTO cfollow.`cf_users.activation` (userid, activationtoken, expiredate) VALUES (?, ?, ?);";
+	private static final String WELCOME_MAIL_TEMPLATE = PropertyReader.getInstance().getProperty("email.activate.body");
 	private int queryResult;
 	
 	private String email;
@@ -30,6 +35,8 @@ public class UserRegisterQuery extends AbstractQuery {
 	private String nicename;
 	private String apiKey;
 	private List<String> invalidFields;
+	
+	private static final Logger LOGGER = Logger.getLogger(UserRegisterQuery.class.getName());
 	
 	public UserRegisterQuery(String email, String password, String nicename) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		this.email = email;
@@ -54,7 +61,7 @@ public class UserRegisterQuery extends AbstractQuery {
 		return invalidFields;
 	}
 	
-	private void createActivationTableRecord(User user) throws SQLException, ClassNotFoundException {
+	private synchronized void createActivationTableRecord(User user) throws SQLException, ClassNotFoundException {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 		PreparedStatement statement         = databaseConnector.getConnection().prepareStatement(CREATE_ACTIVATION_RECORD);
 		int userId 							= user.getUserId();
@@ -62,6 +69,7 @@ public class UserRegisterQuery extends AbstractQuery {
 		int daysValid 						= Integer.parseInt(PropertyReader.getInstance().getProperty("user.activation.timeout.days"));
 		Date date 							= new Date(new java.util.Date().getTime());
 		Calendar calendar 					= Calendar.getInstance();
+		NotificationEmail email;
 		
 		calendar.setTime(date);
 		calendar.add(Calendar.DAY_OF_YEAR, daysValid);
@@ -72,9 +80,34 @@ public class UserRegisterQuery extends AbstractQuery {
 		statement.setDate(3, date, calendar);
 		
 		statement.executeUpdate();
+		
+		// TODO WIP
+		email = new NotificationEmail(user.getEmail(), "Follow - Registration complete", buildWelcomeEmail(user, token));
+		try {
+			email.send();
+		} catch (MessagingException e) {
+			try {
+				try {
+					// Greylisting: retry in two minutes
+					// TODO this should be separate logic
+					Thread.sleep(12000);
+				} catch (InterruptedException interruptedException) {
+					LOGGER.severe(interruptedException.getMessage());
+				}
+				email.send();
+			} catch (MessagingException e1) {
+				// Possibly grey-listing, give up
+				// TODO queue to send activation e-mails later
+				LOGGER.severe("Email could not be sent to " + email + ": " + e.getMessage());
+			}
+		}
+	}
+	
+	private String buildWelcomeEmail(User user, String token) {
+		return String.format(WELCOME_MAIL_TEMPLATE, user.getNiceName(), user.getUserId(), token);
 	}
 
-	public UserRegisterQuery execute() throws ClassNotFoundException, SQLException {
+	public synchronized UserRegisterQuery execute() throws ClassNotFoundException, SQLException {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 		PreparedStatement statement         = databaseConnector.getConnection().prepareStatement(STATEMENT);
 		invalidFields          				= getInvalidFields();

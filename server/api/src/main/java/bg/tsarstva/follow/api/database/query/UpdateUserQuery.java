@@ -36,7 +36,7 @@ public class UpdateUserQuery extends AbstractQuery {
 		this.isDeleted = isDeleted;
 	}
 
-	public UpdateUserQuery execute() throws ClassNotFoundException, SQLException {
+	public synchronized UpdateUserQuery execute() throws ClassNotFoundException, SQLException {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 		PreparedStatement statement = databaseConnector.getConnection().prepareStatement(STATEMENT);
 		
