@@ -36,13 +36,14 @@ public class NotificationEmail {
 		properties.setProperty("mail.smtp.host", smtpHost);
 		properties.setProperty("mail.smtp.port", smtpPort);
 		properties.setProperty("mail.smtp.user", smtpUser);
+		properties.setProperty("mail.smtp.auth", "true");
 		//properties.setProperty("mail.smtp.starttls.enable", "true");
 		
 		session = Session.getDefaultInstance(properties);
 		
 		mailMessage = new MimeMessage(session);
 		mailMessage.setFrom(new InternetAddress(from));
-		mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(addressee));
+		mailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(addressee));
 		mailMessage.setSubject(subject);
 		mailMessage.setText(message);
 	}

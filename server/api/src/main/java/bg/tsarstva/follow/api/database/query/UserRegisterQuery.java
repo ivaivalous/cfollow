@@ -25,7 +25,7 @@ import bg.tsarstva.follow.api.validator.PasswordValidator;
 public class UserRegisterQuery extends AbstractQuery {
 	
 	private static final String STATEMENT = "INSERT INTO `cfollow`.`cf_users.data` (`username`, `password`, `nicename`, `email`, `apiKey`, `isactivated`, `isadmin`, `isdisabled`, `isdeleted`) VALUES (?, ?, ?, ?, ?, '0', '0', '0', '0');";
-	private static final String CREATE_ACTIVATION_RECORD = "INSERT INTO cfollow.`cf_users.activation` (userid, activationtoken, expiredate) VALUES (?, ?, ?);";
+	private static final String CREATE_ACTIVATION_RECORD = "INSERT INTO cfollow.`cf_users.activation` (userid, activationtoken, expiredate) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE activationtoken = ?, expiredate = ?;";
 	private static final String WELCOME_MAIL_TEMPLATE = PropertyReader.getInstance().getProperty("email.activate.body");
 	private int queryResult;
 	
@@ -61,7 +61,7 @@ public class UserRegisterQuery extends AbstractQuery {
 		return invalidFields;
 	}
 	
-	private synchronized void createActivationTableRecord(User user) throws SQLException, ClassNotFoundException {
+	public static synchronized void createActivationTableRecord(User user) throws SQLException, ClassNotFoundException {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 		PreparedStatement statement         = databaseConnector.getConnection().prepareStatement(CREATE_ACTIVATION_RECORD);
 		int userId 							= user.getUserId();
@@ -78,6 +78,8 @@ public class UserRegisterQuery extends AbstractQuery {
 		statement.setInt(1, userId);
 		statement.setString(2, token);
 		statement.setDate(3, date, calendar);
+		statement.setString(4, token);
+		statement.setDate(5, date, calendar);
 		
 		statement.executeUpdate();
 		
@@ -86,25 +88,18 @@ public class UserRegisterQuery extends AbstractQuery {
 		try {
 			email.send();
 		} catch (MessagingException e) {
-			try {
-				try {
-					// Greylisting: retry in two minutes
-					// TODO this should be separate logic
-					Thread.sleep(12000);
-				} catch (InterruptedException interruptedException) {
-					LOGGER.severe(interruptedException.getMessage());
-				}
-				email.send();
-			} catch (MessagingException e1) {
-				// Possibly grey-listing, give up
-				// TODO queue to send activation e-mails later
-				LOGGER.severe("Email could not be sent to " + email + ": " + e.getMessage());
-			}
+			// Possibly grey-listing, give up
+			// TODO queue to send activation e-mails later
+			LOGGER.severe("Email could not be sent to " + email + ": " + e.getMessage());
 		}
 	}
 	
-	private String buildWelcomeEmail(User user, String token) {
-		return String.format(WELCOME_MAIL_TEMPLATE, user.getNiceName(), user.getUserId(), token);
+	private static String buildWelcomeEmail(User user, String token) {
+		String applicationHost = PropertyReader.getInstance().getProperty("application.host");
+		String applicationPort = PropertyReader.getInstance().getProperty("application.port");
+		String url = applicationHost + (applicationPort.equals("80") ? "" : (":" + applicationPort));
+		
+		return String.format(WELCOME_MAIL_TEMPLATE, user.getNiceName(), url, user.getUserId(), token);
 	}
 
 	public synchronized UserRegisterQuery execute() throws ClassNotFoundException, SQLException {

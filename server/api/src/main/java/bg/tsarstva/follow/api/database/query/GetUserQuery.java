@@ -15,20 +15,33 @@ import bg.tsarstva.follow.api.entity.User;
 
 public class GetUserQuery extends AbstractQuery {
 	
-	private static final String STATEMENT = "select * from `cf_users.data` where username = ?";
+	private static final String STATEMENT_USERNAME = "select * from `cf_users.data` where username = ?";
+	private static final String STATEMENT_USERID = "select * from `cf_users.data` where userid = ?";
 	private static ResultSet queryResult;
 	
 	private String username;
+	private int userid;
+	boolean useUserId;
 	
 	public GetUserQuery(String username) {
 		this.username = username;
+		useUserId = false;
+	};
+	
+	public GetUserQuery(int userid) {
+		this.userid = userid;
+		useUserId = true;
 	};
 	
 	public synchronized GetUserQuery execute() throws ClassNotFoundException, SQLException {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
-		PreparedStatement statement = databaseConnector.getConnection().prepareStatement(STATEMENT);
+		PreparedStatement statement = databaseConnector.getConnection().prepareStatement(useUserId ? STATEMENT_USERID : STATEMENT_USERNAME);
 		
-		statement.setString(1, username);
+		if(useUserId) {
+			statement.setInt(1, userid);
+		} else {
+			statement.setString(1, username);
+		}
 		
 		queryResult = statement.executeQuery();
 		return this;
