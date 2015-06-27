@@ -22,7 +22,7 @@ public class UserLoginQuery extends AbstractQuery {
 	private static final String INVALID_FROM_DATABASE = "User was invalid or missing from database, therefore login failed.";
 	private static final String PASSWORD_CORRECT = "Password was correct for user %s.";
 	private static final String PASSWORD_INCORRECT = "User %s existed but password was incorrect";
-	private static final String LOGIN_SUCCESSFUL = "User %s is in correct status. Login successful.";
+	private static final String USER_VALID = "User %s is in correct status. Checking password.";
 	private static final String LOGIN_FAILED = "Login failed for user %s.";
 	
 	private String username;
@@ -50,7 +50,6 @@ public class UserLoginQuery extends AbstractQuery {
 		IpLockoutManager ipManager = new IpLockoutManager(ipAddress);
 		UserLockoutManager userManager = new UserLockoutManager();
 		GetUserQuery userQuery;
-		User user;
 		
 		if(usingEmail) {
 			userManager.setEmail(email);
@@ -83,6 +82,13 @@ public class UserLoginQuery extends AbstractQuery {
 			LOGGER.warning(INVALID_FROM_DATABASE);
 			return false;
 		}
+		
+		if(user.isActivated() && !user.isDisabled() && !user.isDeleted()) {			
+			LOGGER.info(String.format(USER_VALID, user.getUserName()));
+		} else {
+			LOGGER.warning(String.format(LOGIN_FAILED, user.getUserName()));
+			return false;
+		}
 			
 		try {
 			if(PasswordManager.validatePassword(password, user.getPasswordHash())) {
@@ -103,14 +109,7 @@ public class UserLoginQuery extends AbstractQuery {
 			return false;
 		}
 		
-		if(user.isActivated() && !user.isDisabled() && !user.isDeleted()) {			
-			LOGGER.info(String.format(LOGIN_SUCCESSFUL, user.getUserName()));
-			
-			return true;
-		} else {
-			LOGGER.warning(String.format(LOGIN_FAILED, user.getUserName()));
-			return false;
-		}
+		return true;
 	}
 
 	@Override

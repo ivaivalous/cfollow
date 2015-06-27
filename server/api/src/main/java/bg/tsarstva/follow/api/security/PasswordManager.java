@@ -29,9 +29,11 @@ package bg.tsarstva.follow.api.security;
  */
 
 import java.security.SecureRandom;
+
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.SecretKeyFactory;
-import java.math.BigInteger;
+import javax.xml.bind.DatatypeConverter;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -80,7 +82,7 @@ public class PasswordManager {
 		byte[] hash = pbkdf2(password, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
 		
 		// format iterations:salt:hash
-		return PBKDF2_ITERATIONS + ":" + toHex(salt) + ":" + toHex(hash);
+		return PBKDF2_ITERATIONS + ":" + toHex(salt) + ":" + toHex(hash) + ":";
 	}
 
 	/**
@@ -154,16 +156,9 @@ public class PasswordManager {
 	 *
 	 * @param hex the hex string
 	 * @return the hex string decoded into a byte array
-	 */
+	 */	
 	private static byte[] fromHex(String hex) {
-		byte[] binary = new byte[hex.length() / 2];
-		
-		for (int i = 0; i < binary.length; i++) {
-			binary[i] = (byte) Integer.parseInt(
-					hex.substring(2 * i, 2 * i + 2), 16);
-		}
-		
-		return binary;
+		return DatatypeConverter.parseHexBinary(hex);
 	}
 
 	/**
@@ -173,15 +168,6 @@ public class PasswordManager {
 	 * @return a length*2 character string encoding the byte array
 	 */
 	private static String toHex(byte[] array) {
-		BigInteger bi = new BigInteger(1, array);
-		String hex = bi.toString(16);
-		int paddingLength = (array.length * 2) - hex.length();
-		
-		if (paddingLength > 0) {
-			return String.format("%0" + paddingLength + "d", 0) + hex;
-		}
-		else {
-			return hex;
-		}
+		return DatatypeConverter.printHexBinary(array);
 	}
 }

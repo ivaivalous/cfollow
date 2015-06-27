@@ -3,8 +3,10 @@ package bg.tsarstva.follow.api.webadmin.endpoint;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-import javax.servlet.http.HttpServletRequest;
+import org.glassfish.grizzly.http.server.Request;
+
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -29,24 +31,29 @@ public class UserLogin {
 	
 	public UserLogin() {};
 	
+	@Context private javax.servlet.http.HttpServletRequest hsr;
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response userLogin(@Context HttpServletRequest request) {
+	public Response userLogin(
+			@Context Request request, 
+			@FormParam("username") String username,
+			@FormParam("email") String email,
+			@FormParam("password") String password
+	) {
 		   String ipAddress 			 = request.getRemoteAddr();
-		   String username 				 = request.getParameter("username");
-		   String email 				 = request.getParameter("email");
-		   String password 				 = request.getParameter("password");
 		   boolean usingEmail;
 		   UserLoginQuery userLoginQuery;
 		   UserLoginResponseBuilder userLoginResponse;
+		   
+		   request.getRemoteAddr();
 		   
 		   // If no username has been set in the request we're dealing, by default, with an email address
 		   usingEmail = username == null;
 		   
 		   try {
 			   if(usingEmail) {
-				   userLoginQuery = new UserLoginQuery(email, password, ipAddress, true).execute();
+				  userLoginQuery = new UserLoginQuery(email, password, ipAddress, true).execute();
 			   } else {
 				   userLoginQuery = new UserLoginQuery(username, password, ipAddress, false).execute();
 			   }

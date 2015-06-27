@@ -96,6 +96,7 @@ public class GetUserQuery extends AbstractQuery {
 			user.setUserId(queryResult.getInt("userid"));
 			user.setUserName(queryResult.getString("username"));
 			user.setNiceName(queryResult.getString("nicename"));
+			user.setPasswordHash(queryResult.getString("password"));
 			user.setEmail(queryResult.getString("email"));
 			user.setApiKey(queryResult.getString("apiKey"));
 			user.setIsAdmin(queryResult.getBoolean("isadmin"));
