@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
+import java.sql.Timestamp;
 import java.util.logging.Logger;
 
 import bg.tsarstva.follow.api.core.DatabaseConnector;
@@ -33,7 +33,7 @@ public class UserLockoutManager {
 	private String email;
 	private int userId;
 	private boolean useUsername;
-	private Date lastFailureDate;
+	private Timestamp lastFailureDate;
 	private int failCount;
 	
 	// The cooldown period is the amount of time that must have passed
@@ -81,7 +81,7 @@ public class UserLockoutManager {
 			return false;
 		}
 		
-		lastFailureDate = results.getDate("lastfailure");
+		lastFailureDate = results.getTimestamp("lastfailure");
 		failCount = results.getInt("failcount");
 		cooldownPeriod = getCooldownPeriod(failCount);
 		
@@ -98,7 +98,7 @@ public class UserLockoutManager {
 	
 	private static long getCooldownPeriod(int failCount) {
 		long cooldown = failCount * LOCKOUT_COOLDOWN_MULTIPLIER;
-		long maxPeriod = LOCKOUT_MAX_PERIOD * 1000;
+		long maxPeriod = LOCKOUT_MAX_PERIOD * 60000;
 		
 		if(cooldown >= maxPeriod) {
 			return maxPeriod;
@@ -111,11 +111,11 @@ public class UserLockoutManager {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 		PreparedStatement statement         = databaseConnector.getConnection().prepareStatement(ADD_LOCKOUT_STATEMENT);
 		Date date 							= new Date(new java.util.Date().getTime());
-		Calendar calendar 					= Calendar.getInstance();
+		Timestamp timestamp 				= new Timestamp(date.getTime());
 		
 		statement.setInt(1, userId);
-		statement.setDate(2, date, calendar);
-		statement.setDate(3, date, calendar);
+		statement.setTimestamp(2, timestamp);
+		statement.setTimestamp(3, timestamp);
 		
 		statement.executeUpdate();
 		LOGGER.info("Added user lock for user " + userId);

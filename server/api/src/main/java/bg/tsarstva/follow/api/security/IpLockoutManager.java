@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
+import java.sql.Timestamp;
 import java.util.logging.Logger;
 
 import bg.tsarstva.follow.api.core.DatabaseConnector;
@@ -28,7 +28,7 @@ public class IpLockoutManager {
 	private static final Logger LOGGER = Logger.getLogger(IpLockoutManager.class.getName());
 	
 	private String ipAddress;
-	private Date lastFailureDate;
+	private Timestamp lastFailureDate;
 	private int failCount;
 	
 	// The cooldown period is the amount of time that must have passed
@@ -57,7 +57,7 @@ public class IpLockoutManager {
 			return false;
 		}
 		
-		lastFailureDate = results.getDate("lastfailure");
+		lastFailureDate = results.getTimestamp("lastfailure");
 		failCount = results.getInt("failcount");
 		cooldownPeriod = getCooldownPeriod(failCount);
 		
@@ -74,7 +74,7 @@ public class IpLockoutManager {
 	
 	private static long getCooldownPeriod(int failCount) {
 		long cooldown = failCount * LOCKOUT_COOLDOWN_MULTIPLIER;
-		long maxPeriod = LOCKOUT_MAX_PERIOD * 1000;
+		long maxPeriod = LOCKOUT_MAX_PERIOD * 60000;
 		
 		if(cooldown >= maxPeriod) {
 			return maxPeriod;
@@ -87,11 +87,11 @@ public class IpLockoutManager {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 		PreparedStatement statement         = databaseConnector.getConnection().prepareStatement(ADD_LOCKOUT_STATEMENT);
 		Date date 							= new Date(new java.util.Date().getTime());
-		Calendar calendar 					= Calendar.getInstance();
+		Timestamp timestamp 				= new Timestamp(date.getTime());
 		
 		statement.setString(1, ipAddress);
-		statement.setDate(2, date, calendar);
-		statement.setDate(3, date, calendar);
+		statement.setTimestamp(2, timestamp);
+		statement.setTimestamp(3, timestamp);
 		
 		statement.executeUpdate();
 		LOGGER.info("Added IP lock for IP " + ipAddress);
@@ -108,7 +108,7 @@ public class IpLockoutManager {
 	}
 	
 	private void logLockedStatus(String ip, int failCount, long lockoutThresholdTime, long currentTime) {
-		String message = "IP %s is locked out: Current fail count is %d (unpenalized=%d). IP will be unlocked after %d. It is now %d.";
+		String message = "IP %s has been banned: Current fail count is %d (unpenalized=%d). IP will be unlocked after %d. It is now %d.";
 		
 		message = String.format(message, ip, failCount, LOCKOUT_UNPENALIZED_ATTEMPTS, lockoutThresholdTime, currentTime);
 		LOGGER.info(message);
