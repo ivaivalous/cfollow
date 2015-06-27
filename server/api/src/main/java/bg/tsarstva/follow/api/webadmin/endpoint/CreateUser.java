@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -14,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import bg.tsarstva.follow.api.database.query.CreateUserQuery;
+import bg.tsarstva.follow.api.security.jwt.UserJwt;
+import bg.tsarstva.follow.api.webadmin.response.AuthenticationFailureResponse;
 import bg.tsarstva.follow.api.webadmin.response.CreateUserResponseBuilder;
 import bg.tsarstva.follow.api.webadmin.response.SqlErrorResponse;
 
@@ -38,10 +41,15 @@ public class CreateUser {
 			@FormParam(value = "password") String password,
 			@FormParam(value = "nicename") String nicename,
 			@FormParam(value = "email") String email,
-			@FormParam(value = "apiKey") String apiKey
+			@FormParam(value = "apiKey") String apiKey,
+			@HeaderParam(value = "Authorization") String jwt
 			) {
 		CreateUserQuery query;
 		CreateUserResponseBuilder responseBuilder;
+		
+		if(!UserJwt.jwtIsAdmin(jwt)) {
+			return Response.status(401).entity(new AuthenticationFailureResponse().getResponse().toString()).build();
+		}
 		
 		try {
 			query = new CreateUserQuery(username, password, nicename, email, apiKey).execute();

@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -12,6 +13,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import bg.tsarstva.follow.api.database.query.ListUsersQuery;
+import bg.tsarstva.follow.api.security.jwt.UserJwt;
+import bg.tsarstva.follow.api.webadmin.response.AuthenticationFailureResponse;
 import bg.tsarstva.follow.api.webadmin.response.ListUsersResponseBuilder;
 import bg.tsarstva.follow.api.webadmin.response.SqlErrorResponse;
 
@@ -34,10 +37,15 @@ public class ListUsers {
 	public Response listUsers(
 			@DefaultValue("0") @QueryParam("from") int startFrom,
 			@DefaultValue("0") @QueryParam("to") int endAt,
-			@DefaultValue("40") @QueryParam("count") int count
+			@DefaultValue("40") @QueryParam("count") int count,
+			@HeaderParam(value = "Authorization") String jwt
 	) {
 		ListUsersQuery query;
 		ListUsersResponseBuilder responseBuilder;
+		
+		if(!UserJwt.jwtIsAdmin(jwt)) {
+			return Response.status(401).entity(new AuthenticationFailureResponse().getResponse().toString()).build();
+		}
 		
 		try {
 			query = new ListUsersQuery().execute();

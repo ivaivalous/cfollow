@@ -9,6 +9,7 @@ import bg.tsarstva.follow.api.entity.User;
 import bg.tsarstva.follow.api.security.IpLockoutManager;
 import bg.tsarstva.follow.api.security.PasswordManager;
 import bg.tsarstva.follow.api.security.UserLockoutManager;
+import bg.tsarstva.follow.api.security.jwt.UserJwt;
 
 /**
  * API for logging in
@@ -33,6 +34,7 @@ public class UserLoginQuery extends AbstractQuery {
 	private boolean loginDeniedByLockout;
 	private boolean isUserValid;
 	private User user;
+	private String jwt;
 	
 	public UserLoginQuery(String username, String password, String ipAddress, boolean usingEmail) {
 		if(usingEmail) {
@@ -74,6 +76,7 @@ public class UserLoginQuery extends AbstractQuery {
 		user = userQuery.execute().getResult();
 		isUserValid = validateUser(user, ipAddress);
 		
+		jwt = UserJwt.buildUserJwt(user);
 		return this;
 	}
 	
@@ -119,5 +122,9 @@ public class UserLoginQuery extends AbstractQuery {
 	
 	public User getUser() {
 		return user;
+	}
+	
+	public String getJwt() {
+		return jwt;
 	}
 }

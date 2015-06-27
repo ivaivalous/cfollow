@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -12,6 +13,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import bg.tsarstva.follow.api.database.query.UpdateUserQuery;
+import bg.tsarstva.follow.api.security.jwt.UserJwt;
+import bg.tsarstva.follow.api.webadmin.response.AuthenticationFailureResponse;
 import bg.tsarstva.follow.api.webadmin.response.SqlErrorResponse;
 import bg.tsarstva.follow.api.webadmin.response.UpdateUserResponseBuilder;
 
@@ -39,10 +42,15 @@ public class UpdateUser {
 			@FormParam(value = "apiKey") String apiKey,
 			@FormParam(value = "isadmin") int isAdmin,
 			@FormParam(value = "isdisabled") int isDisabled,
-			@FormParam(value = "isdeleted") int isDeleted
+			@FormParam(value = "isdeleted") int isDeleted,
+			@HeaderParam(value = "Authorization") String jwt
 			) {
 		UpdateUserQuery query;
 		UpdateUserResponseBuilder responseBuilder;
+		
+		if(!UserJwt.jwtIsAdmin(jwt)) {
+			return Response.status(401).entity(new AuthenticationFailureResponse().getResponse().toString()).build();
+		}
 		
 		try {
 			query = new UpdateUserQuery(username, password, nicename, email, apiKey, isAdmin, isDisabled, isDeleted).execute();

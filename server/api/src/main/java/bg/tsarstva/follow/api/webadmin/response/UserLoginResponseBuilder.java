@@ -19,8 +19,7 @@ public class UserLoginResponseBuilder extends AbstractResponseBuilder {
 		result.accumulate("username", login.getUser().getUserName());
 		result.accumulate("nicename", login.getUser().getNiceName());
 		result.accumulate("email", login.getUser().getEmail());
-		result.accumulate("apiKey", login.getUser().getApiKey());
-		result.accumulate("isadmin", login.getUser().isAdmin());
+		result.accumulate("jwt", getJwt());
 		
 		return result;
 	}
@@ -32,5 +31,8 @@ public class UserLoginResponseBuilder extends AbstractResponseBuilder {
 			return buildLoginResponse();
 		}
 	}
-
+	
+	public String getJwt() {
+		return login.getJwt();
+	}
 }

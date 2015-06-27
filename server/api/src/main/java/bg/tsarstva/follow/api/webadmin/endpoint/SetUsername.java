@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -12,6 +13,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import bg.tsarstva.follow.api.database.query.SetUsernameQuery;
+import bg.tsarstva.follow.api.security.jwt.UserJwt;
+import bg.tsarstva.follow.api.webadmin.response.AuthenticationFailureResponse;
 import bg.tsarstva.follow.api.webadmin.response.SetUsernameResponseBuilder;
 import bg.tsarstva.follow.api.webadmin.response.SqlErrorResponse;
 
@@ -33,10 +36,15 @@ public class SetUsername {
     @Produces(MediaType.APPLICATION_JSON)
 	public Response setUsername(
 			@FormParam(value = "email") String email,
-			@FormParam(value = "newUsername") String newUsername
+			@FormParam(value = "newUsername") String newUsername,
+			@HeaderParam(value = "Authorization") String jwt
 			) {
 		SetUsernameQuery query;
 		SetUsernameResponseBuilder responseBuilder;
+		
+		if(!UserJwt.validateJwt(jwt)) {
+			return Response.status(401).entity(new AuthenticationFailureResponse().getResponse().toString()).build();
+		}
 		
 		try {
 			query = new SetUsernameQuery(email, newUsername).execute();
