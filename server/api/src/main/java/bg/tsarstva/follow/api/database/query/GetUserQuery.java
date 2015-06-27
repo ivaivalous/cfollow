@@ -16,31 +16,71 @@ import bg.tsarstva.follow.api.entity.User;
 public class GetUserQuery extends AbstractQuery {
 	
 	private static final String STATEMENT_USERNAME = "select * from `cf_users.data` where username = ?";
-	private static final String STATEMENT_USERID = "select * from `cf_users.data` where userid = ?";
+	private static final String STATEMENT_EMAIL = "select * from `cf_users.data` where email = ?";
+	private static final String STATEMENT_USERID = "select * from `cf_users.data` where username = ?";
+	private static final String PASSWORD_CAUSE = " and password = ?;";
 	private static ResultSet queryResult;
 	
 	private String username;
+	private String email;
+	private String password;
 	private int userid;
 	boolean useUserId;
+	boolean useEmail;
 	
 	public GetUserQuery(String username) {
 		this.username = username;
 		useUserId = false;
+		useEmail = false;
 	};
+	
+	public GetUserQuery(String email, boolean usingEmail) {
+		this.email = email;
+		useEmail = true;
+	}
 	
 	public GetUserQuery(int userid) {
 		this.userid = userid;
 		useUserId = true;
+		useEmail = false;
 	};
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	private String getStatementTemplate() {
+		String statement;
+		
+		if(useEmail) {
+			statement = STATEMENT_EMAIL;
+		} else if(useUserId) {
+			statement = STATEMENT_USERID;
+		} else {
+			statement = STATEMENT_USERNAME;
+		}
+		
+		if(password != null) {
+			statement += PASSWORD_CAUSE;
+		}
+		
+		return statement;
+	}
 	
 	public synchronized GetUserQuery execute() throws ClassNotFoundException, SQLException {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
-		PreparedStatement statement = databaseConnector.getConnection().prepareStatement(useUserId ? STATEMENT_USERID : STATEMENT_USERNAME);
+		PreparedStatement statement = databaseConnector.getConnection().prepareStatement(getStatementTemplate());
 		
 		if(useUserId) {
 			statement.setInt(1, userid);
+		} else if(useEmail) {
+			statement.setString(1, email);
 		} else {
 			statement.setString(1, username);
+		}
+		
+		if(password != null) {
+			statement.setString(2, password);
 		}
 		
 		queryResult = statement.executeQuery();

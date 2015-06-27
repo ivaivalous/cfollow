@@ -5,11 +5,18 @@ import org.json.JSONObject;
 public class GenericFailureResponse extends AbstractResponseBuilder {
 	
 	JSONObject response;
+	
+	public GenericFailureResponse() {
+		this(null);
+	}
 
 	public GenericFailureResponse(String failureReason) {
 		response = new JSONObject();
 		response.accumulate("success", false);
-		response.accumulate("failureReason", failureReason);
+		
+		if(failureReason != null) {
+			response.accumulate("failureReason", failureReason);
+		}
 	}
 	
 	public JSONObject getResponse() {
