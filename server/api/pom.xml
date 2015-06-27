@@ -1,98 +1,144 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>bg.tsarstva.follow</groupId>
-  <artifactId>follow-api</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <description>Follow Web API Server</description>
-  <dependencies>
-	<dependency>
-	    <groupId>org.glassfish.jersey.containers</groupId>
-	    <artifactId>jersey-container-grizzly2-http</artifactId>
-	    <version>2.18</version>
-	</dependency>
-	 
-	<dependency>
-	    <groupId>org.glassfish.jersey.containers</groupId>
-	    <artifactId>jersey-container-grizzly2-servlet</artifactId>
-	    <version>2.18</version>
-	</dependency>
-	 
-	<dependency>
-	    <groupId>org.glassfish.jersey.containers</groupId>
-	    <artifactId>jersey-container-jdk-http</artifactId>
-	    <version>2.18</version>
-	</dependency>
-	 
-	<dependency>
-	    <groupId>org.glassfish.jersey.containers</groupId>
-	    <artifactId>jersey-container-simple-http</artifactId>
-	    <version>2.18</version>
-	</dependency>
-	 
-	<dependency>
-	    <groupId>org.glassfish.jersey.containers</groupId>
-	    <artifactId>jersey-container-jetty-http</artifactId>
-	    <version>2.18</version>
-	</dependency>
-	 
-	<dependency>
-	    <groupId>org.glassfish.jersey.containers</groupId>
-	    <artifactId>jersey-container-jetty-servlet</artifactId>
-	    <version>2.18</version>
-	</dependency>
-	
-	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>javax.servlet-api</artifactId>
-		<version>3.1.0</version>
-	</dependency>
-	
-	<dependency>
-	    <groupId>org.glassfish.jersey.test-framework</groupId>
-	    <artifactId>jersey-test-framework-core</artifactId>
-	    <version>2.18</version>
-	</dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>bg.tsarstva.follow</groupId>
+	<artifactId>follow-api</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>Follow Web API Server</description>
+	<name>Follow API</name>
+	<url>https://tsarstva.bg/follow</url>
+	<organization>
+		<name>tsarstva.bg</name>
+		<url>https://tsarstva.bg</url>
+	</organization>
 
-	<dependency>
-		<groupId>org.json</groupId>
-		<artifactId>json</artifactId>
-		<version>20141113</version>
-	</dependency>
-  	<dependency>
-		<groupId>mysql</groupId>
-		<artifactId>mysql-connector-java</artifactId>
-		<version>5.1.35</version>
-	</dependency>
-	<dependency>
-	<groupId>javax.mail</groupId>
-		<artifactId>mail</artifactId>
-		<version>1.4</version>
-	</dependency>
-	
-	<dependency>
-	    <groupId>io.jsonwebtoken</groupId>
-	    <artifactId>jjwt</artifactId>
-	    <version>0.5.1</version>
-	</dependency>
+	<dependencies>
+		<dependency>
+			<groupId>org.glassfish.grizzly</groupId>
+			<artifactId>grizzly-http-server</artifactId>
+			<version>2.3.21</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-grizzly2-http</artifactId>
+			<version>2.18</version>
+		</dependency>
 
-  </dependencies>
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  <name>Follow API</name>
-  <url>https://tsarstva.bg/follow</url>
-  <organization>
-  	<name>tsarstva.bg</name>
-  	<url>https://tsarstva.bg</url>
-  </organization>
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-grizzly2-servlet</artifactId>
+			<version>2.18</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-jdk-http</artifactId>
+			<version>2.18</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-simple-http</artifactId>
+			<version>2.18</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-jetty-http</artifactId>
+			<version>2.18</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-jetty-servlet</artifactId>
+			<version>2.18</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.test-framework</groupId>
+			<artifactId>jersey-test-framework-core</artifactId>
+			<version>2.18</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20141113</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.35</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.5.1</version>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+        <resource>
+            <directory>src/main/config</directory>
+            <includes>
+                <include>**/*.properties</include>
+            </includes>
+        </resource>
+    	</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		    <plugin>
+		      <!-- Build an executable JAR -->
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-jar-plugin</artifactId>
+		      <version>2.4</version>
+		      <configuration>
+		        <archive>
+		          <manifest>
+		            <addClasspath>true</addClasspath>
+		            <classpathPrefix>lib/</classpathPrefix>
+		            <mainClass>bg.tsarstva.follow.api.core.Main</mainClass>
+		          </manifest>
+		        </archive>
+		      </configuration>
+		    </plugin>
+		    <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<finalName>${artifactId}-${version}-standalone</finalName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
