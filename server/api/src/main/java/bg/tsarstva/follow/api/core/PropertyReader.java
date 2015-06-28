@@ -1,5 +1,7 @@
 package bg.tsarstva.follow.api.core;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +17,7 @@ import java.util.logging.Logger;
 public class PropertyReader {
 	
 	private static final String PROPERTIES_FILENAME = "follow.properties";
+	private static final String PROPERTIES_OVERRIDE	= "./follow.properties";
 	private static final Logger LOGGER = Logger.getLogger(PropertyReader.class.getName());
 	private static PropertyReader propertyReader = null;
 	private static Properties properties;
@@ -35,12 +38,27 @@ public class PropertyReader {
 		return propertyReader;
 	}
 	
+	private boolean doesOverrideFileExist() {
+		File file = new File(PROPERTIES_OVERRIDE);
+		return file.exists() && !file.isDirectory();
+	}
+	
 	private void buildProperties() throws IOException {
+		InputStream inputStream         = null;
+		FileInputStream fileInputStream = null;
 		properties = new Properties();
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILENAME);
+		
+		if(doesOverrideFileExist()) {
+			fileInputStream = new FileInputStream(PROPERTIES_OVERRIDE);
+		} else {
+			LOGGER.info("Using default properties");
+			inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILENAME);
+		}
 		
 		if (inputStream != null) {
 			properties.load(inputStream);
+		} else if(fileInputStream != null) {
+			properties.load(fileInputStream);
 		} else {
 			LOGGER.severe("Configuration file follow.properties not found.");
 			throw new FileNotFoundException("Configuration file follow.properties not found.");
