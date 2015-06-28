@@ -3,7 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>bg.tsarstva.follow</groupId>
 	<artifactId>follow-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+    	<build.number>SNAPSHOT</build.number>
+	</properties>
+	<version>0.0.1-${build.number}</version>
 	<description>Follow Web API Server</description>
 	<name>Follow API</name>
 	<url>https://tsarstva.bg/follow</url>
