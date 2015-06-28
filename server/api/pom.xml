@@ -18,7 +18,7 @@
 			<artifactId>grizzly-http-server</artifactId>
 			<version>2.3.21</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-grizzly2-http</artifactId>
@@ -93,13 +93,13 @@
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
-        <resource>
-            <directory>src/main/config</directory>
-            <includes>
-                <include>**/*.properties</include>
-            </includes>
-        </resource>
-    	</resources>
+			<resource>
+				<directory>src/main/config</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -109,22 +109,22 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-		    <plugin>
-		      <!-- Build an executable JAR -->
-		      <groupId>org.apache.maven.plugins</groupId>
-		      <artifactId>maven-jar-plugin</artifactId>
-		      <version>2.4</version>
-		      <configuration>
-		        <archive>
-		          <manifest>
-		            <addClasspath>true</addClasspath>
-		            <classpathPrefix>lib/</classpathPrefix>
-		            <mainClass>bg.tsarstva.follow.api.core.Main</mainClass>
-		          </manifest>
-		        </archive>
-		      </configuration>
-		    </plugin>
-		    <plugin>
+			<plugin>
+				<!-- Build an executable JAR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>bg.tsarstva.follow.api.core.Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
 				<executions>

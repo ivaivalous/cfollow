@@ -31,6 +31,7 @@ public class Main {
     }
     
     public static void main(String[] args) throws IOException {
+    	LogHandler.configure();
     	start();
     	
     	LOGGER.info("Follow web API started.");
