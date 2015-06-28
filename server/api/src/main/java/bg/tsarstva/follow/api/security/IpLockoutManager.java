@@ -103,8 +103,9 @@ public class IpLockoutManager {
 		
 		statement.setString(1, ipAddress);
 		
-		statement.executeUpdate();
-		LOGGER.info("Deleted lock for IP " + ipAddress);
+		if(statement.executeUpdate() == 1) {
+			LOGGER.info("Deleted lock for IP " + ipAddress);
+		}
 	}
 	
 	private void logLockedStatus(String ip, int failCount, long lockoutThresholdTime, long currentTime) {

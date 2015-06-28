@@ -127,8 +127,9 @@ public class UserLockoutManager {
 		
 		statement.setInt(1, userId);
 		
-		statement.executeUpdate();
-		LOGGER.info("Deleted lock for user " + userId);
+		if(statement.executeUpdate() == 1) {
+			LOGGER.info("Deleted lock for user " + userId);
+		}
 	}
 	
 	private void logLockedStatus(String usernameOrEmail, int failCount, long lockoutThresholdTime, long currentTime) {

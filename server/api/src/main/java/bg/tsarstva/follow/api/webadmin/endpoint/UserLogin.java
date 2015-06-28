@@ -31,6 +31,16 @@ public class UserLogin {
 	
 	public UserLogin() {};
 	
+	private String getIpAddress(Request request) {
+		String ipAddress = request.getHeader("X-Forwarded-For");
+		
+		if(ipAddress == null) {
+			return request.getRemoteAddr();
+		} else {
+			return ipAddress;
+		}
+	}
+	
 	@Context private javax.servlet.http.HttpServletRequest hsr;
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -41,7 +51,8 @@ public class UserLogin {
 			@FormParam("email") String email,
 			@FormParam("password") String password
 	) {
-		   String ipAddress 			 = request.getRemoteAddr();
+		   String ipAddress = getIpAddress(request);
+		   
 		   boolean usingEmail;
 		   UserLoginQuery userLoginQuery;
 		   UserLoginResponseBuilder userLoginResponse;
