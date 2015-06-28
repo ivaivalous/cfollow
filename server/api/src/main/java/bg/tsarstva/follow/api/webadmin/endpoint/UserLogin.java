@@ -1,7 +1,6 @@
 package bg.tsarstva.follow.api.webadmin.endpoint;
 
 import java.sql.SQLException;
-import java.util.logging.Logger;
 
 import org.glassfish.grizzly.http.server.Request;
 
@@ -27,8 +26,6 @@ import bg.tsarstva.follow.api.webadmin.response.UserLoginResponseBuilder;
 
 @Path("webadmin/userLogin")
 public class UserLogin {
-	private static final Logger LOGGER = Logger.getLogger(UserLogin.class.getName());
-	
 	public UserLogin() {};
 	
 	private String getIpAddress(Request request) {
@@ -41,7 +38,6 @@ public class UserLogin {
 		}
 	}
 	
-	@Context private javax.servlet.http.HttpServletRequest hsr;
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -69,7 +65,6 @@ public class UserLogin {
 			   
 			   userLoginResponse = new UserLoginResponseBuilder(userLoginQuery);
 		} catch (ClassNotFoundException | SQLException e) {
-			LOGGER.severe("SQL error inserting new user: " + e.getMessage());
 			return Response.serverError().entity(new SqlErrorResponse().getResponse()).build();
 		}
 		   

@@ -5,6 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 /**
  * Reset password change API
@@ -20,6 +21,6 @@ public class ResetPasswordChange {
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
 	public Response resetPasswordChange(String message) {
-    	return Response.ok().entity(message).build();
+    	return Response.status(Status.NOT_IMPLEMENTED).entity(message).build();
 	}
 }

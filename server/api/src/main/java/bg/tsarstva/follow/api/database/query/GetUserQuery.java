@@ -15,10 +15,11 @@ import bg.tsarstva.follow.api.entity.User;
 
 public class GetUserQuery extends AbstractQuery {
 	
-	private static final String STATEMENT_USERNAME = "select * from `cf_users.data` where username = ?";
-	private static final String STATEMENT_EMAIL = "select * from `cf_users.data` where email = ?";
-	private static final String STATEMENT_USERID = "select * from `cf_users.data` where username = ?";
-	private static final String PASSWORD_CAUSE = " and password = ?;";
+	private static final String STATEMENT_USERNAME 	= "select * from `cf_users.data` where username = ?";
+	private static final String STATEMENT_EMAIL 	= "select * from `cf_users.data` where email = ?";
+	private static final String STATEMENT_USERID 	= "select * from `cf_users.data` where username = ?";
+	private static final String STATEMENT_APIKEY 	= "select * from `cf_users.data` where apiKey = ?";
+	private static final String PASSWORD_CAUSE 		= " and password = ?;";
 	private static ResultSet queryResult;
 	
 	private String username;
@@ -32,7 +33,7 @@ public class GetUserQuery extends AbstractQuery {
 		this.username = username;
 		useUserId = false;
 		useEmail = false;
-	};
+	}
 	
 	public GetUserQuery(String email, boolean usingEmail) {
 		if(usingEmail) {
@@ -49,7 +50,12 @@ public class GetUserQuery extends AbstractQuery {
 		this.userid = userid;
 		useUserId = true;
 		useEmail = false;
-	};
+	}
+	
+	public GetUserQuery() {
+		useUserId = false;
+		useEmail = false;
+	}
 	
 	public void setPassword(String password) {
 		this.password = password;
@@ -93,7 +99,18 @@ public class GetUserQuery extends AbstractQuery {
 		return this;
 	}
 	
-	public User getResult() {
+	public static synchronized User getByApiKey(String apiKey) throws ClassNotFoundException, SQLException {
+		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
+		PreparedStatement statement = databaseConnector.getConnection().prepareStatement(STATEMENT_APIKEY);
+		ResultSet queryResult;
+		
+		statement.setString(1, apiKey);
+		
+		queryResult = statement.executeQuery();
+		return toUser(queryResult);
+	}
+	
+	private static User toUser(ResultSet queryResult) {
 		User user = new User();
 		
 		try {
@@ -110,10 +127,13 @@ public class GetUserQuery extends AbstractQuery {
 			user.setIsDeleted(queryResult.getBoolean("isdeleted"));
 			user.setIsActivated(queryResult.getBoolean("isactivated"));
 		} catch(SQLException e) {
-			// TODO log error
 			user.setIsValid(false);
 		}
 		
 		return user;
+	}
+	
+	public User getResult() {
+		return toUser(queryResult);
 	}
 }

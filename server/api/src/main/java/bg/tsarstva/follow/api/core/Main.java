@@ -17,14 +17,15 @@ import java.net.URI;
 
 public class Main {
 	private static final String URL = UrlBuilder.getApplicationUrl();
-	private static final String PACKAGE_TO_USE = "bg.tsarstva.follow.api.webadmin.endpoint";
+	private static final String WEBADMIN_PACKAGE = "bg.tsarstva.follow.api.webadmin.endpoint";
+	private static final String CLIENT_PACKAGE   = "bg.tsarstva.follow.api.client.endpoint";
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 	private static ResourceConfig resourceConfig = null;
 	
 	private Main() {};
 	
     public static HttpServer start() {
-        resourceConfig = new ResourceConfig().packages(PACKAGE_TO_USE);
+        resourceConfig = new ResourceConfig().packages(WEBADMIN_PACKAGE, CLIENT_PACKAGE);
         
         // TODO Support TLS
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(URL), resourceConfig);
