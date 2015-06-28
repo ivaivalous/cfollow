@@ -35,8 +35,14 @@ public class GetUserQuery extends AbstractQuery {
 	};
 	
 	public GetUserQuery(String email, boolean usingEmail) {
-		this.email = email;
-		useEmail = true;
+		if(usingEmail) {
+			this.email = email;
+			useEmail = true;
+		} else {
+			this.username = email;
+			useUserId = false;
+			useEmail = false;
+		}
 	}
 	
 	public GetUserQuery(int userid) {

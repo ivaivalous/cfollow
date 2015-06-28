@@ -46,10 +46,10 @@ public class UserRegister {
 			userRegisterResponse = new UserRegisterResponseBuilder(queryResult);
 		} catch(SQLException | ClassNotFoundException e) {
 			LOGGER.severe("SQL error inserting new user: " + e.getMessage());
-			return Response.serverError().entity(new SqlErrorResponse().getResponse()).build();
+			return Response.serverError().entity(new SqlErrorResponse().getResponse().toString()).build();
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
 			LOGGER.severe("Algorithm error creating password hash " + e.getMessage());
-			return Response.serverError().entity(new SqlErrorResponse().getResponse()).build();
+			return Response.serverError().entity(new SqlErrorResponse().getResponse().toString()).build();
 		}
 		
 		// TODO Not always "ok"

@@ -71,6 +71,10 @@ public class UserRegisterQuery extends AbstractQuery {
 		Calendar calendar 					= Calendar.getInstance();
 		NotificationEmail email;
 		
+		if(!user.getIsValid()) {
+			return;
+		}
+		
 		calendar.setTime(date);
 		calendar.add(Calendar.DAY_OF_YEAR, daysValid);
 		date = new Date(calendar.getTimeInMillis());

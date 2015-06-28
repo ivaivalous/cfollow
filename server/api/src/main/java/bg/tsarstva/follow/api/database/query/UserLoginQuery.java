@@ -36,11 +36,13 @@ public class UserLoginQuery extends AbstractQuery {
 	private User user;
 	private String jwt;
 	
-	public UserLoginQuery(String username, String password, String ipAddress, boolean usingEmail) {
+	public UserLoginQuery(String usernameOrEmail, String password, String ipAddress, boolean usingEmail) {
+		this.usingEmail = usingEmail;
+		
 		if(usingEmail) {
-			this.username = username == null ? "" : username;
+			this.email = usernameOrEmail == null ? "" : usernameOrEmail;
 		} else {
-			this.email = username == null ? "" : username;
+			this.username = usernameOrEmail == null ? "" : usernameOrEmail;
 		}
 
 		this.ipAddress = ipAddress;

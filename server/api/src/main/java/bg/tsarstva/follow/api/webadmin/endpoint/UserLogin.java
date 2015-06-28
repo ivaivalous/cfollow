@@ -57,8 +57,6 @@ public class UserLogin {
 		   UserLoginQuery userLoginQuery;
 		   UserLoginResponseBuilder userLoginResponse;
 		   
-		   request.getRemoteAddr();
-		   
 		   // If no username has been set in the request we're dealing, by default, with an email address
 		   usingEmail = username == null;
 		   

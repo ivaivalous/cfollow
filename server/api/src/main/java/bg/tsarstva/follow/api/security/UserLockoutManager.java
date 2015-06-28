@@ -60,7 +60,7 @@ public class UserLockoutManager {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 		PreparedStatement statement         = databaseConnector.getConnection().prepareStatement(SELECT_LOCKOUT_STATEMENT);
 		String usernameOrEmail              = useUsername ? username : email;
-		User user = new GetUserQuery(usernameOrEmail).execute().getResult();
+		User user 							= new GetUserQuery(usernameOrEmail, !useUsername).execute().getResult();
 		ResultSet results;
 		long lockoutThresholdTime; 
 		
