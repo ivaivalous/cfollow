@@ -32,6 +32,7 @@ public class Main {
     
     public static void main(String[] args) throws IOException {
     	LogHandler.configure();
+    	LogHandler.configureGrizzlyLogging();
     	start();
     	
     	LOGGER.info("Follow web API started.");
