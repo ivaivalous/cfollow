@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import bg.tsarstva.follow.api.database.query.CreateUserQuery;
 import bg.tsarstva.follow.api.security.jwt.UserJwt;
@@ -48,7 +49,7 @@ public class CreateUser {
 		CreateUserResponseBuilder responseBuilder;
 		
 		if(!UserJwt.jwtIsAdmin(jwt)) {
-			return Response.status(401).entity(new AuthenticationFailureResponse().getResponse().toString()).build();
+			return Response.status(Status.UNAUTHORIZED).entity(new AuthenticationFailureResponse().getResponse().toString()).build();
 		}
 		
 		try {

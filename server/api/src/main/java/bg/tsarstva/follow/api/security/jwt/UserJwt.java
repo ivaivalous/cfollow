@@ -50,6 +50,7 @@ public class UserJwt {
 		claimsMap.put("isadmin", user.isAdmin());
 		claimsMap.put("apiKey", user.getApiKey());
 		claimsMap.put("username", user.getUserName());
+		claimsMap.put("userid", user.getUserId());
 		claimsMap.put("email", user.getEmail());
 		claimsMap.put("nicename", user.getNiceName());
 	}
@@ -83,5 +84,9 @@ public class UserJwt {
 		} else {
 			return false;
 		}
+	}
+	
+	public static Claims validateAndGetClaims(String jwt) {
+		return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(SIGNING_KEY)).parseClaimsJws(jwt).getBody();
 	}
 }
