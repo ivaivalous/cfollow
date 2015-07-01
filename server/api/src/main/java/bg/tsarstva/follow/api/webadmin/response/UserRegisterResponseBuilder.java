@@ -32,7 +32,7 @@ public class UserRegisterResponseBuilder extends AbstractResponseBuilder {
 			invalidFieldsArray.put(invalidField);
 		}
 		
-		response.accumulate("invalidFields", invalidFieldsArray);
+		response.put("invalidFields", invalidFieldsArray);
 		
 		return response;
 	}

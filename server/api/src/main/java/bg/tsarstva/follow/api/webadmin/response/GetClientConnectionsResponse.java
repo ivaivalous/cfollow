@@ -35,7 +35,7 @@ public class GetClientConnectionsResponse extends AbstractResponseBuilder {
 		}
 		
 		response.accumulate("success", true);
-		response.accumulate("log", logsArray);
+		response.put("log", logsArray);
 	}
 
 	@Override

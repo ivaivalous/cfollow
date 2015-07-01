@@ -20,9 +20,10 @@ public class GetClientPositionsResponse extends AbstractResponseBuilder {
 	}
 	
 	private void buildResponse() throws JSONException, SQLException {
-		JSONArray logsArray = new JSONArray();
+		JSONArray logsArray;
 		JSONObject innerArrayElement;
 		response = new JSONObject();
+		logsArray = new JSONArray();
 		
 		while(result.next()) {
 			innerArrayElement = new JSONObject();
@@ -35,7 +36,7 @@ public class GetClientPositionsResponse extends AbstractResponseBuilder {
 		}
 		
 		response.accumulate("success", true);
-		response.accumulate("log", logsArray);
+		response.put("log", logsArray);
 	}
 
 	@Override
