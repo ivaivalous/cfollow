@@ -8,9 +8,9 @@ import java.util.Date;
 
 import bg.tsarstva.follow.api.core.DatabaseConnector;
 
-public class GetClientLogQuery extends AbstractQuery {
+public class ClientRecordsQuery extends AbstractQuery {
 	
-	private static final String STATEMENT = "select * from cfollow.`cf_client.logs` where userid = ? and date > ? and date < ? limit ?;";
+	private static final String STATEMENT = "select * from cfollow.`cf_client.connections` where userid = ? and date > ? and date < ? limit ?;";
 	private static final int MAX_LIMIT    = 100000;
 	
 	private static ResultSet queryResult;
@@ -19,7 +19,7 @@ public class GetClientLogQuery extends AbstractQuery {
 	private long dateTo;
 	private long dateFrom;
 	
-	public GetClientLogQuery(int userId) {
+	public ClientRecordsQuery(int userId) {
 		this.userId = userId;
 		count 		= -1;
 		dateTo 		= -1;
@@ -39,7 +39,7 @@ public class GetClientLogQuery extends AbstractQuery {
 	}
 
 	@Override
-	public GetClientLogQuery execute() throws ClassNotFoundException, SQLException {
+	public ClientRecordsQuery execute() throws ClassNotFoundException, SQLException {
 		DatabaseConnector databaseConnector = DatabaseConnector.getInstance();
 		PreparedStatement statement = databaseConnector.getConnection().prepareStatement(STATEMENT);
 		

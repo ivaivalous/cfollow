@@ -9,12 +9,12 @@ import org.json.JSONObject;
 
 import bg.tsarstva.follow.api.database.query.GetClientRecordsQuery;
 
-public class GetClientLogResponse extends AbstractResponseBuilder {
+public class GetClientPositionsResponse extends AbstractResponseBuilder {
 	
 	JSONObject response;
 	private ResultSet result;
 	
-	public GetClientLogResponse(GetClientRecordsQuery result) throws JSONException, SQLException {
+	public GetClientPositionsResponse(GetClientRecordsQuery result) throws JSONException, SQLException {
 		this.result = (ResultSet)result.getResult();
 		buildResponse();
 	}
@@ -28,8 +28,8 @@ public class GetClientLogResponse extends AbstractResponseBuilder {
 			innerArrayElement = new JSONObject();
 			
 			innerArrayElement.accumulate("date", result.getLong("date"));
-			innerArrayElement.accumulate("level", result.getString("level"));
-			innerArrayElement.accumulate("message", result.getString("message"));
+			innerArrayElement.accumulate("latitude", result.getDouble("latitude"));
+			innerArrayElement.accumulate("longitude", result.getDouble("longitude"));
 			
 			logsArray.put(innerArrayElement);
 		}

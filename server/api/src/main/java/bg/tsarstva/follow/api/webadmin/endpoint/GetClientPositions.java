@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response.Status;
 import bg.tsarstva.follow.api.database.query.GetClientRecordsQuery;
 import bg.tsarstva.follow.api.security.jwt.UserJwt;
 import bg.tsarstva.follow.api.webadmin.response.AuthenticationFailureResponse;
-import bg.tsarstva.follow.api.webadmin.response.GetClientLogResponse;
+import bg.tsarstva.follow.api.webadmin.response.GetClientPositionsResponse;
 import bg.tsarstva.follow.api.webadmin.response.SqlErrorResponse;
 
 /**
@@ -25,8 +25,8 @@ import bg.tsarstva.follow.api.webadmin.response.SqlErrorResponse;
  *
  */
 
-@Path("webadmin/getClientLog")
-public class GetClientLog {
+@Path("webadmin/getClientPositions")
+public class GetClientPositions {
 	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,7 +43,7 @@ public class GetClientLog {
 		long dateToLong = getDateLong(dateTo);
 		int countInt = getCountInteger(count);
 		GetClientRecordsQuery query;
-		GetClientLogResponse response;
+		GetClientPositionsResponse response;
 		
 		if(!UserJwt.validateJwt(jwt)) {
 			return Response.status(Status.UNAUTHORIZED).entity(new AuthenticationFailureResponse().getResponse().toString()).build();
@@ -54,14 +54,14 @@ public class GetClientLog {
 		userId = (int)claims.get("userid");
 		
 		try {
-			query = new GetClientRecordsQuery("logs", userId);
+			query = new GetClientRecordsQuery("positions", userId);
 			
 			query.setCount(countInt);
 			query.setDateFrom(dateFromLong);
 			query.setDateTo(dateToLong);
 			
 			query.execute();
-			response = new GetClientLogResponse(query);
+			response = new GetClientPositionsResponse(query);
 		}  catch(SQLException | ClassNotFoundException e) {
 			return Response.serverError().entity(new SqlErrorResponse().getResponse()).build();
 		}
