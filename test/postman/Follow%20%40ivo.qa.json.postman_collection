@@ -1,0 +1,388 @@
+{
+	"id": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40",
+	"name": "Follow @ivo.qa",
+	"description": "",
+	"order": [
+		"0af1a601-9d70-73cb-6e8a-5b27f32b578d",
+		"6f7ce75e-3d0f-9619-658a-86973ad190d5",
+		"89b48b30-1482-8227-9c66-3ba216a35c72",
+		"eb36eea2-1651-fe75-5a69-d51f263109b0",
+		"54227546-9f39-20c1-04bc-79cbd8871583",
+		"4bdcc673-cc48-ad88-f8a3-97c7e5e9a9df",
+		"3712c478-4ab6-1441-8e7c-26da74df3c82",
+		"ac03cbef-2a04-5dd3-0e39-cc4e216d630b",
+		"99ecc6a7-301a-fdd3-cfe5-383a3e1ef45c",
+		"389ecb1e-8a77-4103-e762-49fe7ecc5803",
+		"c62c471e-f969-f4ae-fb61-ccfece4ca50d",
+		"b25798ca-13dc-da91-95c4-2e59697287bc",
+		"d7ca1a23-0868-13e1-12fe-a29c8c4136aa"
+	],
+	"folders": [],
+	"timestamp": 1435778211847,
+	"owner": "22976",
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "0af1a601-9d70-73cb-6e8a-5b27f32b578d",
+			"headers": "",
+			"url": "https://ivo.qa/follow/webadmin/listUsers",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778249215,
+			"name": "listUsers",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		},
+		{
+			"id": "3712c478-4ab6-1441-8e7c-26da74df3c82",
+			"headers": "",
+			"url": "https://ivo.qa/follow/webadmin/userActivate?userid=25&token=mmhsck",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778311398,
+			"name": "userActivate GET",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		},
+		{
+			"id": "389ecb1e-8a77-4103-e762-49fe7ecc5803",
+			"headers": "Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpc2FkbWluIjp0cnVlLCJhcGlLZXkiOiJhNThhNGY0Ny0zYTZjLTQ0MTUtYWQ2MC1kOWI0NTZjY2UyNmUiLCJpc3MiOiJiZy50c2Fyc3R2YS5mb2xsb3ciLCJuaWNlbmFtZSI6IkpvaG4gU21pdGgiLCJleHAiOjE0MzU3OTAzNzQzMDIsImlhdCI6MTQzNTcwMzk3NDMwMiwidXNlcmlkIjozOSwiZW1haWwiOiJ0ZXN0QGFodG9wb2wubWUiLCJ1c2VybmFtZSI6InRlc3RAYWh0b3BvbC5tZSJ9.LlQWWSx1LRu952naQbFwjiJn_W2pk7_0Gffakykm_PvMfSjSQHgiplks4wvf7rdCSttj7tNwySwhaTFZP_6Zkw\n",
+			"url": "https://ivo.qa/follow/webadmin/getClientLog?count=0",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778337909,
+			"name": "getClientLog",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		},
+		{
+			"id": "4bdcc673-cc48-ad88-f8a3-97c7e5e9a9df",
+			"headers": "",
+			"url": "https://ivo.qa/follow/webadmin/userActivate",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "userid",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "w00t",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778301757,
+			"name": "userActivate",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		},
+		{
+			"id": "54227546-9f39-20c1-04bc-79cbd8871583",
+			"headers": "",
+			"url": "https://ivo.qa/follow/webadmin/userRegister",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "nicename",
+					"value": "John Smith",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "aaa111IVO+",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "ivo_{{$randomInt}}_reg@ivo.qa",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778291530,
+			"name": "userRegister",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		},
+		{
+			"id": "6f7ce75e-3d0f-9619-658a-86973ad190d5",
+			"headers": "Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpc2FkbWluIjp0cnVlLCJhcGlLZXkiOiJhNThhNGY0Ny0zYTZjLTQ0MTUtYWQ2MC1kOWI0NTZjY2UyNmUiLCJpc3MiOiJiZy50c2Fyc3R2YS5mb2xsb3ciLCJuaWNlbmFtZSI6IkpvaG4gU21pdGgiLCJleHAiOjE0MzU1MjEyMzU0MjYsImlhdCI6MTQzNTQzNDgzNTQyNiwiZW1haWwiOiJ0ZXN0QGFodG9wb2wubWUiLCJ1c2VybmFtZSI6InRlc3RAYWh0b3BvbC5tZSJ9.4Damd13go5UEj0o5euKOwY8tNcvwWTMJU4NAzD30r4YNuQoFXMh83kUKA_LcmygPG9zCqxD_qORitqH7cJXF2w\n",
+			"url": "https://ivo.qa/follow/webadmin/createUser",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "ivo_{{$randomInt}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "aaaaa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nicename",
+					"value": "Ivo Ivov",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "ivo_{{$randomInt}}@ivo.qa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "apiKey",
+					"value": "key_{{$randomInt}}",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778259508,
+			"name": "createUser",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		},
+		{
+			"id": "89b48b30-1482-8227-9c66-3ba216a35c72",
+			"headers": "",
+			"url": "https://ivo.qa/follow/webadmin/updateUser",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "iiivo",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "aaaaa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nicename",
+					"value": "Ivo Ivovski",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "aaa@abv.bg",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "apiKey",
+					"value": "aaaaa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isadmin",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isdisabled",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isdeleted",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778272916,
+			"name": "updateUser",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		},
+		{
+			"id": "99ecc6a7-301a-fdd3-cfe5-383a3e1ef45c",
+			"headers": "Content-Type: application/json\n",
+			"url": "https://ivo.qa/follow/client/log",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778329226,
+			"name": "client/log",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40",
+			"rawModeData": "{\n    \"apiKey\": \"a58a4f47-3a6c-4415-ad60-d9b456cce26e\",\n    \"log\": [\n        {\n            \"date\": 1435530983000,\n            \"level\": \"INFO\",\n            \"message\": \"Hello World!\"\n        },\n        {\n            \"date\": 1435531983000,\n            \"level\": \"ERROR\",\n            \"message\": \"Explosion comming!\"\n        }\n    ]\n}"
+		},
+		{
+			"id": "ac03cbef-2a04-5dd3-0e39-cc4e216d630b",
+			"headers": "",
+			"url": "https://ivo.qa/follow/webadmin/userLogin",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778319083,
+			"name": "userLogin",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		},
+		{
+			"id": "b25798ca-13dc-da91-95c4-2e59697287bc",
+			"headers": "Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpc2FkbWluIjp0cnVlLCJhcGlLZXkiOiJhNThhNGY0Ny0zYTZjLTQ0MTUtYWQ2MC1kOWI0NTZjY2UyNmUiLCJpc3MiOiJiZy50c2Fyc3R2YS5mb2xsb3ciLCJuaWNlbmFtZSI6IkpvaG4gU21pdGgiLCJleHAiOjE0MzU3OTAzNzQzMDIsImlhdCI6MTQzNTcwMzk3NDMwMiwidXNlcmlkIjozOSwiZW1haWwiOiJ0ZXN0QGFodG9wb2wubWUiLCJ1c2VybmFtZSI6InRlc3RAYWh0b3BvbC5tZSJ9.LlQWWSx1LRu952naQbFwjiJn_W2pk7_0Gffakykm_PvMfSjSQHgiplks4wvf7rdCSttj7tNwySwhaTFZP_6Zkw\n",
+			"url": "https://ivo.qa/follow/webadmin/getClientConnections?count=0",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778356760,
+			"name": "getClientConnections",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		},
+		{
+			"id": "c62c471e-f969-f4ae-fb61-ccfece4ca50d",
+			"headers": "Content-Type: application/json\n",
+			"url": "https://ivo.qa/follow/client/message",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778348460,
+			"name": "client/message",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40",
+			"rawModeData": "{\n    \"apiKey\": \"a58a4f47-3a6c-4415-ad60-d9b456cce26e\",\n    \"connectionSsid\": \"Name\",\n    \"positions\": {\n        \"total\": 5,\n        \"new\": 1,\n        \"list\": [ \n        {\n            \"id\": 5,\n            \"latitude\": 44.5554,\n            \"longitude\": 55.1245,\n            \"date\": 123456\n        }\n        ]\n    }\n}"
+		},
+		{
+			"id": "d7ca1a23-0868-13e1-12fe-a29c8c4136aa",
+			"headers": "Authorization: eyJhbGciOiJIUzUxMiJ9.eyJpc2FkbWluIjp0cnVlLCJhcGlLZXkiOiJhNThhNGY0Ny0zYTZjLTQ0MTUtYWQ2MC1kOWI0NTZjY2UyNmUiLCJpc3MiOiJiZy50c2Fyc3R2YS5mb2xsb3ciLCJuaWNlbmFtZSI6IkpvaG4gU21pdGgiLCJleHAiOjE0MzU3OTAzNzQzMDIsImlhdCI6MTQzNTcwMzk3NDMwMiwidXNlcmlkIjozOSwiZW1haWwiOiJ0ZXN0QGFodG9wb2wubWUiLCJ1c2VybmFtZSI6InRlc3RAYWh0b3BvbC5tZSJ9.LlQWWSx1LRu952naQbFwjiJn_W2pk7_0Gffakykm_PvMfSjSQHgiplks4wvf7rdCSttj7tNwySwhaTFZP_6Zkw\n",
+			"url": "https://ivo.qa/follow/webadmin/getClientPositions?count=0",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778366465,
+			"name": "getClientPositions",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		},
+		{
+			"id": "eb36eea2-1651-fe75-5a69-d51f263109b0",
+			"headers": "",
+			"url": "https://ivo.qa/follow/webadmin/setUsername",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "ivo_599_reg@ivo.qa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "newUsername",
+					"value": "ivo599",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1435778283382,
+			"name": "setUsername",
+			"description": "",
+			"collectionId": "ef396b38-a3e0-c7bf-3b27-4bb65c7a2d40"
+		}
+	]
+}
