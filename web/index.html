@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Follow</title>
+        <link rel="stylesheet" href="css/style.css">  
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDYIGLnWOJNl2mdZPfJr56ev6o1C3horqw'></script>
+        <link rel="stylesheet" href="application.css">
+  </head>
+  <body>
+
+    <div id="all" class="grid-100 mobile-grid-100 align-center">
+  <div id="login-box" class="grid-100 mobile-grid-100 align-center">
+    <h1>Track your <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/235522/car.png" alt="car" /> with <em>Follow</em></h1>
+    <h2>Fancy logging in?</h2>
+    <input id="user" type="text" placeholder="Username" required /><br />
+    <input id="pass" type="password" placeholder="Password" required /><br />
+    <span id="login-notification"></span><br />
+    <input id="login-submit" type="button" value="Login" />
+  </div>
+  <div id="user-box" class="grid-100 mobile-grid-100 align-center">
+    <div id="navigation" class="grid-60 mobile-grid-50 align-left">
+      <a id="map">Map</a> | <a id="con">Connections</a> | <a id="log">Logs</a>
+    </div>
+    <div id="user-bio" class="grid-40 mobile-grid-50 align-right">
+      <span id="user-box-name"></span><br />
+      <a id="log-out">Log Out</a>
+    </div>
+    <hr />
+  </div>
+  <div id="welcome-section" class="grid-100 mobile-grid-100 align-center">
+    <h1>Welcome to <em>Follow</em></h1>
+    <p>
+      <em>Follow</em> is a vehicle tracking system that lets you know where your car is. It works by placing a hi-tech, GPS powered device in your car and then using this site to track its location.
+    </p>
+    <p>
+      The <em>Follow</em> web site provides you with several functions.
+    </p>
+    <p>
+      Use the three links in the navigation panel at the top of the page to access the three screens of the application.
+    </p>
+    <p>Using <em>Maps</em> you can see the locations <em>Follow</em> GPS has registered. It will also show points that have been determined using the device's connection IP address.
+    </p>
+    <p>Using <em>Connections</em> you can monitor the network connections the device made while talking to the online service.
+    </p>
+    <p>
+      Finally, use <em>Logs</em> to oversee information and error messages sent over by the device.
+    </p>
+    <p>
+      <i>Happy driving.</i>
+    </p>
+  </div>
+  <div id="map-section" class="grid-100 mobile-grid-100 align-center">
+    <div id="map-notification"></div>
+  </div>
+  <div id="con-section" class="grid-100 mobile-grid-100 align-center">
+    <div id="con-notification"></div>
+  </div>
+  <div id="log-section" class="grid-100 mobile-grid-100 align-center">
+    <div id="log-notification"></div>
+  </div>
+</div>  
+<script src="js/index.js"></script>  
+  </body>
+</html>
