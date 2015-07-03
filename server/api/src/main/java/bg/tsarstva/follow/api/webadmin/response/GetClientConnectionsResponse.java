@@ -27,7 +27,7 @@ public class GetClientConnectionsResponse extends AbstractResponseBuilder {
 		while(result.next()) {
 			innerArrayElement = new JSONObject();
 			
-			innerArrayElement.accumulate("date", result.getLong("date"));
+			innerArrayElement.accumulate("date", result.getTimestamp("date").getTime());
 			innerArrayElement.accumulate("ip", result.getString("ip"));
 			innerArrayElement.accumulate("ssid", result.getString("ssid"));
 			
@@ -35,7 +35,7 @@ public class GetClientConnectionsResponse extends AbstractResponseBuilder {
 		}
 		
 		response.accumulate("success", true);
-		response.put("log", logsArray);
+		response.put("connections", logsArray);
 	}
 
 	@Override
