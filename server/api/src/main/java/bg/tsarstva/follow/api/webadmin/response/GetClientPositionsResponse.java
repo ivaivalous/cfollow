@@ -9,34 +9,33 @@ import org.json.JSONObject;
 
 import bg.tsarstva.follow.api.database.query.GetClientRecordsQuery;
 
-public class GetClientPositionsResponse extends AbstractResponseBuilder {
+public class GetClientConnectionsResponse extends AbstractResponseBuilder {
 	
 	JSONObject response;
 	private ResultSet result;
 	
-	public GetClientPositionsResponse(GetClientRecordsQuery result) throws JSONException, SQLException {
+	public GetClientConnectionsResponse(GetClientRecordsQuery result) throws JSONException, SQLException {
 		this.result = (ResultSet)result.getResult();
 		buildResponse();
 	}
 	
 	private void buildResponse() throws JSONException, SQLException {
-		JSONArray logsArray;
+		JSONArray logsArray = new JSONArray();
 		JSONObject innerArrayElement;
 		response = new JSONObject();
-		logsArray = new JSONArray();
 		
 		while(result.next()) {
 			innerArrayElement = new JSONObject();
 			
-			innerArrayElement.accumulate("date", result.getLong("date"));
-			innerArrayElement.accumulate("latitude", result.getDouble("latitude"));
-			innerArrayElement.accumulate("longitude", result.getDouble("longitude"));
+			innerArrayElement.accumulate("date", result.getTimestamp("date").getTime());
+			innerArrayElement.accumulate("ip", result.getString("ip"));
+			innerArrayElement.accumulate("ssid", result.getString("ssid"));
 			
 			logsArray.put(innerArrayElement);
 		}
 		
 		response.accumulate("success", true);
-		response.put("log", logsArray);
+		response.put("connections", logsArray);
 	}
 
 	@Override
