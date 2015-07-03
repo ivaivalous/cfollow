@@ -27,7 +27,7 @@ public class GetClientLogResponse extends AbstractResponseBuilder {
 		while(result.next()) {
 			innerArrayElement = new JSONObject();
 			
-			innerArrayElement.accumulate("date", result.getLong("date"));
+			innerArrayElement.accumulate("date", result.getTimestamp("date").getTime());
 			innerArrayElement.accumulate("level", result.getString("level"));
 			innerArrayElement.accumulate("message", result.getString("message"));
 			
