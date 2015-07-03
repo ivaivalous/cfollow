@@ -4,7 +4,7 @@
 	<groupId>bg.tsarstva.follow</groupId>
 	<artifactId>follow-api</artifactId>
 	<properties>
-    	<build.number>SNAPSHOT</build.number>
+		<build.number>SNAPSHOT</build.number>
 	</properties>
 	<version>0.0.1-${build.number}</version>
 	<description>Follow Web API Server</description>
@@ -90,6 +90,13 @@
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>0.5.1</version>
+		</dependency>
+		
+		<!-- See https://blogs.oracle.com/geertjan/entry/messagebodyreader_not_found_for_media -->
+		<dependency>
+			<groupId>com.owlike</groupId>
+			<artifactId>genson</artifactId>
+			<version>0.99</version>
 		</dependency>
 
 	</dependencies>
