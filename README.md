@@ -1,6 +1,8 @@
 cfollow
 =======
 
+(NOTE: This repository was used for my diplome thesis. Data on wiki pages may be out of date. Someday I might fix it and make something out of this project. In the meanwhile, you can do whatever you want with it.)
+
 Cfollow is a vehicle tracking solution created with the idea to aid finding of stolen vehicles.
 
 Cfollow consists of three main parts.
