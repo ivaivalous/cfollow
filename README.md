@@ -4,12 +4,15 @@ cfollow
 **(NOTE: This repository was used for the development of my bechelor's thesis. Data on wiki pages may be out of date. Someday I might fix it and make something out of this project. In the meanwhile, you can do whatever you want with it.)**
 
 A working demo of the online system **MAY** be available online at:
-URL (website): https://ivo.qa/f
-URL (webservice): https://ivo.qa/follow
+
+    URL (website): https://ivo.qa/f
+    URL (webservice): https://ivo.qa/follow
 
 You can use the following credentials for login:
-Username: github
-Password: github
+
+    Username: github
+    Password: github
+    
 (The service only enforces strong passwords from the userRegister API endpoint and not the createUser admin API).
 
 Cfollow is a vehicle tracking solution created with the idea to aid finding of stolen vehicles.
