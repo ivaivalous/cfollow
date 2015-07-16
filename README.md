@@ -35,4 +35,8 @@ You can use the following credentials for login:
     
 (The service only enforces strong passwords from the userRegister API endpoint and not the createUser admin API).
 
-You are free to use this project in any way you find useful. 
+You are free to use this project in any way you find useful.
+
+Extras (in Bulgarian, unfortunately):
+ - Actual thesis as submitted to the university: https://tsarstva.bg/ac/imarinkov-bsc-thesis.pdf
+ - The deck used at my thesis' defence: https://tsarstva.bg/ac/Brief.pdf
