@@ -1,7 +1,27 @@
 cfollow
 =======
 
-NOTE: This repository was used for the development of my bachelor's thesis. Data on wiki pages may be out of date. Someday I might fix it and make something out of this project. In the meanwhile, you can do whatever you want with it.
+"Follow" is a vehicle tracking system, consisting of a central server, client devices hidden in vehicles to be tracked, and a web application where vehicle owners can monitor tracking data.
+Clients use GPS to record geographic position and send it to the server over WiFi, using a web API. The same web API is used with the web application.
+
+The project was in fact my diploma thesis for graduating as a Computer Engineer (BSc) from the Technical University of Sofia. Thus, some functionality is incomplete but I may work on it in my spare time in the future in order to produce a usable solution.
+
+Things that are (fully) functional:
+ - The web API can receive location and logs data from clients using an API token for authorization
+ - The web API can login users. Users are vehicle owners that want to track their vehicles and/or admins that can create or edit other users. Authorization is done using a username and a password
+ - The web API can provide users with data sent by clients. A user can view the data her Follow device sent out - locations, IP addresses communication was done from, and logs. Authorization is done using a JWT which is sent to the user when she logs in
+ - The web API can receive and act on different admin requests - create and modify users
+ - The web API can register new users and send out activation email
+ - The web API can activate users through their activation token
+ - The web API implements user data protection through login security measures
+ - The web app can interact with the web API in order to provide login and viewing of data. It can also render location data using Google Maps API
+ 
+Things that are outstanding
+ - Documentation update (wiki)
+ - Web app has a minimal intefrace that is to be enriched with more CSS eye candy
+ - Web app to work with the admin web API
+ - Actual Follow client implementation
+ - Web API with additional security features
 
 A working demo of the online system **MAY** be available online at:
 
@@ -15,23 +35,4 @@ You can use the following credentials for login:
     
 (The service only enforces strong passwords from the userRegister API endpoint and not the createUser admin API).
 
-Cfollow is a vehicle tracking solution created with the idea to aid finding of stolen vehicles.
-
-Cfollow consists of three main parts.
- - The client - a mobile device running the Linux operating system that uses GPS for geographic location and WiFi to connect to wireless networks to share data and accept instructions from a Cfollow server.
- - The server - an application that communicates with clients and stores provided data
- - The web application - a service where users (vehicle owners) can register their clients and track their vehicles
-
-In brief, the client is in hibernated mode for most of the time and is "awaken" at specific time interval to carry out its procedure. During its procedure, it will record current GPS location and attempt to connect to an open WiFi network. The device is built with the presumption that free WiFi is now widely spread and available through city centres, gas stations and shopping centres. The client records location and connection data to an internal database as WiFi is not expected to be available every time the device executes its routine. By default, the client will sync only the latest location and connection data to the server, but the server may indicate it requires additional information.
-
-A flowchart of the client's routine is available [in the Wiki](https://github.com/ivaivalous/cfollow/wiki/Cfollow-client-workflow).
-
-The server, through responses to client requests, is able to indicate it needs additional data, modify configuration settings and execute additional code. The server is the means of the website user (hence vehicle owner) to express their will. 
-
-Client-server communication is explained [in the Wiki](https://github.com/ivaivalous/cfollow/wiki/Communications-Design).
-
-The website is where users are given a friendly way to access their information and define the client's behavior.
-
-Please note the project is currently in development and is far from complete. 
-
-This is the BEng project of Ivaylo Marinkov.
+You are free to use this project in any way you find useful. 
