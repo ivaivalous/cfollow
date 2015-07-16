@@ -1,7 +1,7 @@
 cfollow
 =======
 
-**(NOTE: This repository was used for the development of my bechelor's thesis. Data on wiki pages may be out of date. Someday I might fix it and make something out of this project. In the meanwhile, you can do whatever you want with it.)**
+NOTE: This repository was used for the development of my bachelor's thesis. Data on wiki pages may be out of date. Someday I might fix it and make something out of this project. In the meanwhile, you can do whatever you want with it.
 
 A working demo of the online system **MAY** be available online at:
 
